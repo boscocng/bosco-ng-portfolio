@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Force light theme even if system is in dark mode */
+    --background: #ffffff;
+    --foreground: #171717;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Use mono for paragraph body to emulate a readable typewriter look */
+p {
+  font-family: var(--font-hand), var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  letter-spacing: 0.01em;
+}
+
+.font-typewriter {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  letter-spacing: 0.005em;
+}
+
+@keyframes float-x {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+}
+
+.animate-float-x {
+  animation: float-x 1.4s ease-in-out infinite;
+}
+
+/* Handwritten red pen circle effect */
+@keyframes scribble { 0%,100%{transform:rotate(0deg) scale(1)} 50%{transform:rotate(.6deg) scale(1.02)} }
+
+.hand-circle { mix-blend: multiply; }
+.hand-circle svg {
+  display: block;
+}
+.hand-circle ellipse,
+.hand-circle path {
+  stroke: rgba(185, 28, 28, 0.95); /* darker red */
+  stroke-width: 2.2;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hand-circle .alt {
+  opacity: 0.75;
+  stroke-width: 1.6;
+}
+
+/* Smooth draw-on stroke using CSS variables */
+.draw-stroke {
+  stroke-dasharray: var(--len, 300);
+  stroke-dashoffset: var(--dash, var(--len, 300));
+  transition: stroke-dashoffset 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Trigger the draw-on animation when a parent with .group is hovered */
+.group:hover .draw-stroke { stroke-dashoffset: 0; }
+
+/* Subtle notebook paper background */
+.notebook-paper {
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1.2px),
+    repeating-linear-gradient(0deg, transparent 0, transparent 31px, rgba(37, 99, 235, 0.08) 32px, rgba(37, 99, 235, 0.08) 33px),
+    linear-gradient(90deg, rgba(239, 68, 68, 0.14), rgba(239, 68, 68, 0.14));
+  background-size:
+    8px 8px,
+    100% 32px,
+    2px 100%;
+  background-position:
+    0 0,
+    0 0,
+    96px 0; /* left margin rule */
+  background-repeat:
+    repeat,
+    repeat,
+    no-repeat;
+  background-attachment: fixed;
+}
