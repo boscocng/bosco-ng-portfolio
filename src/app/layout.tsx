@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 
@@ -7,6 +7,12 @@ const poppins = Poppins({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -21,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} font-sans antialiased bg-white relative overflow-x-clip notebook-paper`}>
+      <body className={`${poppins.variable} ${plexMono.variable} font-sans antialiased bg-white relative overflow-x-clip notebook-paper`}>
         {/* Corner gradient bleeds (bottom-left and bottom-right) */}
         <div
           aria-hidden

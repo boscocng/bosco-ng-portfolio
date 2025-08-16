@@ -21,18 +21,25 @@ export default function Header() {
 						Bosco Ng
 					</Link>
 
-					<nav className="hidden md:flex items-center gap-8 text-sm sm:text-base text-gray-600">
-						{navigationLinks.map((item) => (
+					<nav className="hidden md:flex notebook-tabs gap-1 text-sm font-mono">
+						{navigationLinks.map((item, idx) => (
 							<Link
 								key={item.href}
 								href={item.href}
-								className="group relative isolate rounded-md px-2 py-1 font-medium text-gray-600 transition duration-200 ease-out hover:text-gray-900 hover:scale-[1.03] motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 focus-visible:ring-offset-2"
+								className={`notebook-tab paper-texture border-gray-300 text-gray-800`}
+								style={{
+									backgroundImage:
+										idx % 3 === 0
+											? 'linear-gradient(180deg, rgba(254,240,138,0.9), rgba(250,204,21,0.78))'
+										: idx % 3 === 1
+											? 'linear-gradient(180deg, rgba(253,186,116,0.9), rgba(251,146,60,0.78))'
+										: 'linear-gradient(180deg, rgba(248,113,113,0.9), rgba(239,68,68,0.78))',
+									marginLeft: idx === 0 ? 0 : -12,
+									// base stacking; hover will override with z-index:999
+									['--z' as any]: String(30 - idx),
+								}}
 							>
-								<span className="relative z-10">{item.label}</span>
-								<span
-									aria-hidden
-									className="pointer-events-none absolute inset-0 rounded-md opacity-0 blur-lg transition duration-200 ease-out group-hover:opacity-100 bg-amber-200/35"
-								/>
+								{item.label}
 							</Link>
 						))}
 					</nav>

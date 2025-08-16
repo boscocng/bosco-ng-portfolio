@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Caveat, Patrick_Hand } from "next/font/google";
+import Highlight from "@/components/Highlight";
+import Underline from "@/components/Underline";
 
 const headline = Caveat({
 	weight: ["700"],
@@ -19,11 +21,11 @@ export default function Hero() {
 					Hi, I’m <span className="font-bold">Bosco</span>
 				</h1>
 				<p className={`${bodyHand.className} text-xl sm:text-2xl leading-9 text-gray-700 max-w-4xl`}>
-					I’m a software engineer and second‑year CS student at Queen’s University. At my core, I’m a leader who bridges programming, creativity, and technology to drive impact.
+					I’m a <Highlight color="rgba(253, 230, 138, 0.45)">software engineer</Highlight> and <Highlight color="rgba(253, 230, 138, 0.45)">second‑year CS student</Highlight> at Queen’s University. At my core, I’m a <Highlight color="rgba(251, 146, 60, 0.45)">leader</Highlight> who bridges programming, creativity, and technology to <Highlight color="rgba(248, 113, 113, 0.35)">drive impact</Highlight>.
 				</p>
 
 				<p className={`${bodyHand.className} text-xl sm:text-2xl leading-9 text-gray-700 max-w-4xl`}>
-					I’ve led teams across 6+ projects to ship award‑winning web applications serving 2,400+ active users. If you want a creative, product‑minded, impact‑driven Summer 2026 Developer Intern, hire me.
+					I’ve <Highlight color="rgba(253, 230, 138, 0.45)">led teams</Highlight> across <Highlight color="rgba(251, 146, 60, 0.35)">6+ projects</Highlight> to ship <Highlight color="rgba(253, 230, 138, 0.45)">award‑winning</Highlight> web applications serving <Highlight color="rgba(248, 113, 113, 0.35)">2,400+ active users</Highlight>. If you want a <Underline>product‑minded</Underline> and <Underline>impact‑driven</Underline> Summer 2026 Developer Intern, <span className="relative inline-block align-baseline px-1"><span className="relative z-10">hire me</span><span aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 hand-circle"><svg width="140" height="50" viewBox="0 0 140 50" fill="none"><ellipse className="draw-stroke" style={{ ['--len' as any]: 220, ['--dash' as any]: 0 }} cx="70" cy="25" rx="52" ry="14"/></svg></span></span>.
 				</p>
 
 				<div className="space-y-8">
