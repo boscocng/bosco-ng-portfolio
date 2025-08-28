@@ -1,4 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { Caveat } from "next/font/google";
+
+const headline = Caveat({
+	weight: ["700"],
+	subsets: ["latin"],
+});
 
 const navigationLinks = [
 	{ href: "/experience", label: "Experience" },
@@ -17,8 +25,10 @@ export default function Header() {
 
 			<div className="relative z-10 mx-auto max-w-5xl px-8 py-4">
 				<div className="flex items-center justify-between">
-					<Link href="/" className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900">
-						Bosco Ng
+					<Link href="/" className="group relative">
+						<div className={`${headline.className} text-2xl sm:text-3xl font-bold text-gray-900 relative z-10 transition-transform duration-200 group-hover:scale-105`}>
+							Bosco Ng
+						</div>
 					</Link>
 
 					<nav className="hidden md:flex notebook-tabs gap-1 text-sm font-mono">

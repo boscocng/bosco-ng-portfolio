@@ -6,35 +6,41 @@ import { annotate, type RoughAnnotation } from "rough-notation";
 type UnderlineProps = {
   children: React.ReactNode;
   color?: string;
-  padding?: number | [number, number] | [number, number, number, number];
+  delay?: number; // animation delay in milliseconds
 };
 
 export default function Underline({
   children,
-  color = "rgba(185,28,28,0.9)",
-  padding = [0, 2],
+  color = "rgba(251, 182, 209, 0.7)", // much lighter highlighter pink
+  delay = 0,
 }: UnderlineProps) {
   const spanRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
     if (!spanRef.current) return;
-    const annotation: RoughAnnotation = annotate(spanRef.current, {
-      type: "underline",
-      color,
-      multiline: false,
-      iterations: 1,
-      padding,
-      animate: true,
-      animationDuration: 500,
-      strokeWidth: 2,
-    });
-    annotation.show();
+    let annotation: RoughAnnotation | undefined;
+
+    const timer = setTimeout(() => {
+      annotation = annotate(spanRef.current!, {
+        type: "underline",
+        color: color,
+        strokeWidth: 3, // much thinner line
+        padding: 2,
+        animate: true,
+        animationDuration: 500,
+      });
+      annotation.show();
+    }, delay);
+
     return () => {
+      clearTimeout(timer);
       try {
-        annotation.remove();
-      } catch {}
+        annotation?.remove();
+      } catch {
+        // ignore
+      }
     };
-  }, [color, padding]);
+  }, [color, delay]);
 
   return (
     <span ref={spanRef} className="inline-block align-baseline">
