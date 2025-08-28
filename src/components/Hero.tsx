@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { Caveat, Patrick_Hand } from "next/font/google";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Highlight from "@/components/Highlight";
 import Underline from "@/components/Underline";
+import Testimonials from "@/components/Testimonials";
 
 const headline = Caveat({
 	weight: ["700"],
@@ -19,80 +20,71 @@ const bodyHand = Patrick_Hand({
 export default function Hero() {
 	const circleRef = useRef<SVGEllipseElement>(null);
 	const outerCircleRef = useRef<SVGEllipseElement>(null);
-	const [currentTestimonial, setCurrentTestimonial] = useState(0);
+	const animationsPlayedRef = useRef(false);
 
-	const testimonials = [
-		{
-			name: "Sarah Chen",
-			role: "Senior Developer",
-			company: "TechCorp",
-			text: "Bosco consistently delivered exceptional results and showed remarkable leadership skills. His ability to bridge technical complexity with user needs made him invaluable to our team.",
-			color: "from-yellow-200 to-yellow-100",
-			borderColor: "border-yellow-300",
-			rotation: "rotate-2",
-			linkedin: "https://www.linkedin.com/in/sarah-chen-dev",
-		},
-		{
-			name: "Marcus Rodriguez",
-			role: "Product Manager",
-			company: "InnovateLab",
-			text: "Working with Bosco was a game-changer. His product-minded approach and technical expertise helped us ship features that users actually loved. A true impact driver.",
-			color: "from-orange-200 to-orange-100",
-			borderColor: "border-orange-300",
-			rotation: "-rotate-1",
-			linkedin: "https://www.linkedin.com/in/marcus-rodriguez-pm",
-		},
-		{
-			name: "Alex Thompson",
-			role: "Team Lead",
-			company: "StartupXYZ",
-			text: "Bosco's leadership during our project was outstanding. He not only wrote great code but also mentored junior developers and kept us focused on delivering value.",
-			color: "from-pink-200 to-pink-100",
-			borderColor: "border-pink-300",
-			rotation: "rotate-1",
-			linkedin: "https://www.linkedin.com/in/alex-thompson-lead",
-		},
-		{
-			name: "Jordan Lee",
-			role: "UX Designer",
-			company: "DesignHub",
-			text: "Bosco's attention to user experience and ability to translate design requirements into functional code made our collaboration seamless and effective.",
-			color: "from-blue-200 to-blue-100",
-			borderColor: "border-blue-300",
-			rotation: "-rotate-2",
-			linkedin: "https://www.linkedin.com/in/jordan-lee-ux",
-		},
-		{
-			name: "Casey Kim",
-			role: "Backend Engineer",
-			company: "DataFlow",
-			text: "Bosco's technical skills are matched only by his communication abilities. He made complex technical decisions accessible to the entire team.",
-			color: "from-green-200 to-green-100",
-			borderColor: "border-green-300",
-			rotation: "rotate-3",
-			linkedin: "https://www.linkedin.com/in/casey-kim-engineer",
-		},
-	];
-
+	// Check if this is a fresh visit or navigation to homepage
 	useEffect(() => {
+		const hasVisited = localStorage.getItem('homepage-visited');
+		const currentPath = window.location.pathname;
+		
+		// Reset animations if:
+		// 1. First time visiting the site, OR
+		// 2. Navigating to homepage from another page
+		if (!hasVisited || (hasVisited && currentPath === '/')) {
+			animationsPlayedRef.current = false;
+			localStorage.setItem('homepage-visited', 'true');
+		} else {
+			animationsPlayedRef.current = true;
+		}
+
+		// Listen for navigation changes (when someone clicks "Bosco Ng" in header)
+		const handleNavigation = () => {
+			if (window.location.pathname === '/') {
+				animationsPlayedRef.current = false;
+				localStorage.setItem('homepage-visited', 'true');
+			}
+		};
+
+		// Listen for popstate (back/forward navigation)
+		window.addEventListener('popstate', handleNavigation);
+		
+		// Listen for pushstate/replacestate (programmatic navigation)
+		const originalPushState = history.pushState;
+		const originalReplaceState = history.replaceState;
+		
+		history.pushState = function(...args) {
+			originalPushState.apply(history, args);
+			handleNavigation();
+		};
+		
+		history.replaceState = function(...args) {
+			originalReplaceState.apply(history, args);
+			handleNavigation();
+		};
+
+		return () => {
+			window.removeEventListener('popstate', handleNavigation);
+			history.pushState = originalPushState;
+			history.replaceState = originalReplaceState;
+		};
+	}, []);
+
+	// Only run circle animation once per session
+	useEffect(() => {
+		if (animationsPlayedRef.current) return;
+		
 		const timer = setTimeout(() => {
 			if (circleRef.current) {
-				circleRef.current.style.strokeDashoffset = "0";
+				circleRef.current.classList.add('animate');
 			}
+			if (outerCircleRef.current) {
+				outerCircleRef.current.classList.add('animate');
+			}
+			animationsPlayedRef.current = true;
 		}, 2500);
 
 		return () => clearTimeout(timer);
 	}, []);
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-		}, 4000); // Change every 4 seconds
-
-		return () => clearInterval(interval);
-	}, [testimonials.length]);
-
-	const current = testimonials[currentTestimonial];
 
 	return (
 		<section className="mx-auto max-w-5xl px-8 min-h-[78svh] flex items-center relative">
@@ -107,7 +99,7 @@ export default function Hero() {
 				<div className="flex items-start gap-8">
 					<div className="flex-1 max-w-2xl space-y-4">
 						<p className={`${bodyHand.className} text-xl sm:text-2xl leading-9 text-gray-700 animate-fade-in-up animation-delay-200`}>
-							I've <Highlight color="rgba(253, 230, 138, 0.45)" delay={1000}>led teams</Highlight> across <Highlight color="rgba(251, 146, 60, 0.35)" delay={1200}>6+ projects</Highlight> to ship <Highlight color="rgba(253, 230, 138, 0.45)" delay={1400}>award‑winning</Highlight> web applications serving <Highlight color="rgba(248, 113, 113, 0.35)" delay={1600}>2,400+ active users</Highlight>. If you want a <Underline delay={1800}>product‑minded</Underline> and <Underline delay={2000}>impact‑driven</Underline> Summer 2026 Developer Intern, <span className="relative inline-block align-baseline px-1"><span className="relative z-10">hire me</span><span aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 hand-circle"><svg width="140" height="50" viewBox="0 0 140 50" fill="none"><ellipse ref={circleRef} className="draw-stroke" style={{ ['--len' as any]: 220, ['--dash' as any]: 0 }} cx="70" cy="25" rx="52" ry="14"/><ellipse className="draw-stroke-outer" style={{ ['--len' as any]: 280, ['--dash' as any]: 0 }} cx="70" cy="25" rx="58" ry="18"/></svg></span></span>.
+							I've <Highlight color="rgba(253, 230, 138, 0.45)" delay={1000}>led teams</Highlight> across <Highlight color="rgba(251, 146, 60, 0.35)" delay={1200}>6+ projects</Highlight> to ship <Highlight color="rgba(253, 230, 138, 0.45)" delay={1400}>award‑winning</Highlight> web applications serving <Highlight color="rgba(248, 113, 113, 0.35)" delay={1600}>2,400+ active users</Highlight>. If you want a <Underline delay={1800}>product‑minded</Underline> and <Underline delay={2000}>impact‑driven</Underline> Summer 2026 Developer Intern, <span className="relative inline-block align-baseline px-1"><span className="relative z-10">hire me</span><span aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 hand-circle"><svg width="140" height="50" viewBox="0 0 140 50" fill="none"><ellipse ref={circleRef} className="draw-stroke" style={{ ['--len' as any]: 220, ['--dash' as any]: 220 }} cx="70" cy="25" rx="52" ry="14"/><ellipse ref={outerCircleRef} className="draw-stroke-outer" style={{ ['--len' as any]: 280, ['--dash' as any]: 280 }} cx="70" cy="25" rx="58" ry="18"/></svg></span></span>.
 						</p>
 
 						{/* Call to action and social links - positioned directly below paragraph */}
@@ -173,68 +165,7 @@ export default function Hero() {
 					
 					{/* Sticky note positioned to the right of the second paragraph */}
 					<div className="w-64 flex-shrink-0">
-						<div className={`group relative bg-gradient-to-br ${current.color} ${current.borderColor} border-2 rounded-sm shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-1 ${current.rotation}`}>
-							{/* Sticky note shadow effect */}
-							<div className="absolute inset-0 bg-black/5 rounded-sm" />
-							
-							{/* Content */}
-							<div className="relative p-4 space-y-3">
-								{/* Quote mark */}
-								<div className="text-2xl text-gray-400 font-serif leading-none">
-									"
-								</div>
-								
-								{/* Testimonial text */}
-								<p className={`${bodyHand.className} text-sm text-gray-700 leading-relaxed`}>
-									{current.text}
-								</p>
-								
-								{/* Author info */}
-								<div className="pt-2 border-t border-gray-300/30">
-									<div className="font-semibold text-gray-800 text-sm">
-										<a 
-											href={current.linkedin || '#'} 
-											target="_blank" 
-											rel="noopener noreferrer" 
-											className="hover:underline cursor-pointer"
-											onClick={(e) => {
-												console.log('Clicked on:', current.name, 'URL:', current.linkedin);
-												if (!current.linkedin) {
-													e.preventDefault();
-													console.log('No LinkedIn URL for:', current.name);
-												}
-											}}
-										>
-											{current.name}
-										</a>
-									</div>
-									<div className="text-xs text-gray-600">
-										{current.role} at {current.company}
-									</div>
-								</div>
-							</div>
-
-							{/* Sticky note fold effect */}
-							<div className="absolute top-0 right-0 w-0 h-0 border-l-[16px] border-l-transparent border-t-[16px] border-t-gray-400/30" />
-							
-							{/* Hover lift effect */}
-							<div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-sm" />
-						</div>
-
-						{/* Indicator dots */}
-						<div className="flex justify-center mt-4 space-x-2">
-							{testimonials.map((_, index) => (
-								<button
-									key={index}
-									onClick={() => setCurrentTestimonial(index)}
-									className={`w-2 h-2 rounded-full transition-all duration-300 ${
-										index === currentTestimonial 
-											? 'bg-gray-400 scale-125' 
-											: 'bg-gray-300 hover:bg-gray-400'
-									}`}
-								/>
-							))}
-						</div>
+						<Testimonials />
 					</div>
 				</div>
 			</div>

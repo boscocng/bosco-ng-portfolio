@@ -130,6 +130,8 @@ p {
   stroke-dashoffset: var(--len, 220);
   transition: stroke-dashoffset 0.8s ease-out;
   transition-delay: var(--transition-delay, 0s);
+  /* Ensure circles start hidden */
+  stroke-dasharray: var(--len, 220);
 }
 
 .hand-circle .draw-stroke-outer {
@@ -138,6 +140,8 @@ p {
   transition-delay: var(--transition-delay, 0s);
   stroke-width: 1.5; /* slightly thinner for the outer circle */
   opacity: 0.8; /* slightly more transparent to distinguish from inner circle */
+  /* Ensure circles start hidden */
+  stroke-dasharray: var(--len, 280);
 }
 
 .hand-circle .draw-stroke.animate {
