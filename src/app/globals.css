@@ -94,6 +94,69 @@ p {
   animation: float-x 1.4s ease-in-out infinite;
 }
 
+/* Enhanced floating animations with different timings */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float-y {
+  animation: float-y 2.2s ease-in-out infinite;
+}
+
+@keyframes float-rotate {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.animate-float-rotate {
+  animation: float-rotate 3s ease-in-out infinite;
+}
+
+/* Additional opacity utilities for floating elements */
+.opacity-3 {
+  opacity: 0.03;
+}
+
+.opacity-4 {
+  opacity: 0.04;
+}
+
+.opacity-5 {
+  opacity: 0.05;
+}
+
+/* Enhanced backdrop blur effects */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Enhanced shadow effects */
+.shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Enhanced hover effects */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.hover\:scale-110:hover {
+  transform: scale(1.1);
+}
+
+/* Smooth transitions for all properties */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
 /* Handwritten red pen circle effect */
 @keyframes scribble { 0%,100%{transform:rotate(0deg) scale(1)} 50%{transform:rotate(.6deg) scale(1.02)} }
 
