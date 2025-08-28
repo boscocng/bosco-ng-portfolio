@@ -122,7 +122,7 @@ export default function Hero() {
 							</div>
 
 							<div className="flex items-center gap-6 text-gray-500">
-								<Link aria-label="LinkedIn" href="https://www.linkedin.com/" target="_blank" className="relative inline-flex items-center justify-center transition-colors hover:text-gray-900 group">
+								<Link aria-label="LinkedIn" href="https://www.linkedin.com/in/bosco-c-ng/" target="_blank" className="relative inline-flex items-center justify-center transition-colors hover:text-gray-900 group">
 									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="relative">
 										<rect x="2" y="9" width="4" height="12" rx="1"/>
 										<circle cx="4" cy="4" r="2"/>
@@ -135,7 +135,33 @@ export default function Hero() {
 										</svg>
 									</span>
 								</Link>
-								<Link aria-label="Email" href="mailto:your@email.com" className="relative inline-flex items-center justify-center transition-colors hover:text-gray-900 group">
+								<button 
+									aria-label="Email" 
+									onClick={async () => {
+										try {
+											await navigator.clipboard.writeText('bosco.c.ng@gmail.com');
+											
+											// Create and show verification message
+											const message = document.createElement('div');
+											message.className = 'fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-4 py-2 rounded-md shadow-lg z-50 text-sm animate-fade-in-up';
+											message.textContent = 'Email copied to clipboard!';
+											
+											document.body.appendChild(message);
+											
+											// Remove message after 3 seconds
+											setTimeout(() => {
+												if (message.parentNode) {
+													message.parentNode.removeChild(message);
+												}
+											}, 3000);
+										} catch (error) {
+											// Fallback: show email in alert
+											alert('Email: bosco.c.ng@gmail.com');
+										}
+									}}
+									className="relative inline-flex items-center justify-center transition-colors hover:text-gray-900 group cursor-pointer"
+									title="Click to copy email address"
+								>
 									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="relative">
 										<rect x="3" y="5" width="18" height="14" rx="2"/>
 										<path d="M3 7.5 12 13l9-5.5"/>
@@ -146,8 +172,8 @@ export default function Hero() {
 											<path className="alt draw-stroke" style={{ ['--len' as any]: 150, ['--dash' as any]: 150 }} d="M4 22c6 7 30 7 36 0"/>
 										</svg>
 									</span>
-								</Link>
-								<Link aria-label="GitHub" href="https://github.com/" target="_blank" className="relative inline-flex items-center justify-center transition-colors hover:text-gray-900 group">
+								</button>
+								<Link aria-label="GitHub" href="https://github.com/boscocng" target="_blank" className="relative inline-flex items-center justify-center transition-colors hover:text-gray-900 group">
 									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="relative">
 										<path d="M9 19c-4 1.5-4-2.5-6-3"/>
 										<path d="M15 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7a5.44 5.44 0 0 0-1.5-3.77 5.07 5.07 0 0 0-.09-3.77s-1.18-.35-3.9 1.48a13.38 13.38 0 0 0-7 0c-2.72-1.83-3.9-1.48-3.9-1.48a5.07 5.07 0 0 0-.09 3.77 5.44 5.44 0 0 0-1.5 3.77c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.61V22"/>
