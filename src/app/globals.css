@@ -284,3 +284,75 @@ p {
 
 /* Handwritten highlighter effect */
 /* removed marker highlight styles */
+
+/* Handwritten Arrow Drawing Animation */
+@keyframes draw-arrow-shaft {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes draw-arrow-head {
+  0% {
+    stroke-dashoffset: 20;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes draw-arrow-squiggle {
+  0% {
+    stroke-dashoffset: 30;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Handwritten arrow hover animation */
+.group:hover .handwritten-arrow-shaft {
+  stroke-dashoffset: 0 !important;
+  transition: stroke-dashoffset 0.8s ease-in-out 0.2s;
+}
+
+.group:hover .handwritten-arrow-head {
+  stroke-dashoffset: 0 !important;
+  transition: stroke-dashoffset 0.6s ease-in-out 1s;
+}
+
+.group:hover .handwritten-arrow-squiggle {
+  stroke-dashoffset: 0 !important;
+  transition: stroke-dashoffset 0.5s ease-in-out 1.2s;
+}
+
+/* Add a subtle shake effect to make it look more hand-drawn */
+@keyframes hand-shake {
+  0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+  10% { transform: translateX(-0.5px) translateY(0.3px) rotate(-0.2deg); }
+  20% { transform: translateX(0.3px) translateY(-0.2px) rotate(0.1deg); }
+  30% { transform: translateX(0.2px) translateY(0.4px) rotate(0.3deg); }
+  40% { transform: translateX(-0.3px) translateY(-0.1px) rotate(-0.1deg); }
+  50% { transform: translateX(0.1px) translateY(0.2px) rotate(0.2deg); }
+  60% { transform: translateX(-0.2px) translateY(-0.3px) rotate(-0.3deg); }
+  70% { transform: translateX(0.4px) translateY(0.1px) rotate(0.1deg); }
+  80% { transform: translateX(-0.1px) translateY(0.3px) rotate(-0.2deg); }
+  90% { transform: translateX(0.2px) translateY(-0.2px) rotate(0.2deg); }
+}
+
+.handwritten-arrow-shaft,
+.handwritten-arrow-head,
+.handwritten-arrow-squiggle {
+  animation: hand-shake 0.1s ease-in-out infinite;
+  animation-play-state: paused;
+  transition: stroke-dashoffset 0.8s ease-in-out;
+}
+
+.group:hover .handwritten-arrow-shaft,
+.group:hover .handwritten-arrow-head,
+.group:hover .handwritten-arrow-squiggle {
+  animation-play-state: running;
+}
