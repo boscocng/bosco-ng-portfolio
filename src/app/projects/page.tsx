@@ -30,6 +30,8 @@ interface Project {
 	status: "completed" | "in-progress" | "planned";
 	featured: boolean;
 	users?: number;
+	userMetric?: string;
+	duration?: string;
 	caseStudy: {
 		overview: string;
 		challenge: string;
@@ -46,16 +48,18 @@ const initialProjects: Project[] = [
 		id: 1,
 		name: "CASLab Room Booking System",
 		description: "A comprehensive booking platform for Queen's Computing students to reserve private breakout rooms in the Faculty's Computer Lab. Built with modern web technologies and designed for seamless user experience.",
-		briefDescription: "Production-ready booking platform for 1,800+ computing students with private breakout room reservations",
+		briefDescription: "Production-ready booking platform for 500+ computing students with private breakout room reservations",
 		technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Docker", "Supabase"],
 		websiteUrl: "https://compsa.ca/booking",
 		githubUrl: "https://github.com/compsa/room-booking",
-		imageUrl: "/images/projects/caslab-booking.jpg",
+		imageUrl: "/images/CASLab.jpeg",
 		status: "completed",
 		featured: true,
-		users: 1800,
+		users: 500,
+		userMetric: "active users",
+		duration: "1 month",
 		caseStudy: {
-			overview: "The CASLab Room Booking System was developed to solve the problem of students struggling to find and reserve study spaces in the Faculty of Computing. With 1,800+ students competing for limited breakout rooms, we needed a fair, efficient, and user-friendly solution.",
+			overview: "The CASLab Room Booking System was developed to solve the problem of students struggling to find and reserve study spaces in the Faculty of Computing. With 500+ students competing for limited breakout rooms, we needed a fair, efficient, and user-friendly solution.",
 			challenge: "Students were manually checking room availability, leading to conflicts and inefficient space utilization. The existing system lacked real-time updates, fair scheduling, and mobile accessibility.",
 			solution: "Built a full-stack web application with real-time availability tracking, one-hour booking slots for fair access, and a responsive design that works seamlessly on all devices.",
 			technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Docker", "Supabase", "Real-time WebSockets"],
@@ -68,7 +72,7 @@ const initialProjects: Project[] = [
 				"Email notifications for booking confirmations"
 			],
 			results: [
-				"Served 1,800+ computing students",
+				"Served 500+ computing students",
 				"Reduced room booking conflicts by 85%",
 				"Improved space utilization efficiency by 60%",
 				"Received 4.8/5 user satisfaction rating"
@@ -83,39 +87,41 @@ const initialProjects: Project[] = [
 	},
 	{
 		id: 2,
-		name: "QTEDT Ride Control System",
-		description: "A sophisticated Python-based ride control system managing 19 carts across 6 scenes with real-time tracking, safety protocols, and maintenance routing for themed entertainment applications.",
-		briefDescription: "Python (PyQt5) ride control system managing 19 carts across 6 scenes with real-time tracking and safety compliance",
-		technologies: ["Python", "PyQt5", "Flask", "SQLite", "JavaScript", "HTML/CSS", "JSON", "Real-time Systems"],
-		githubUrl: "https://github.com/qtedt/ride-control",
-		imageUrl: "/images/projects/qtedt-ride-control.jpg",
+		name: "QWEB's Booking Platform",
+		description: "A comprehensive booking platform for Queen's Computing students to reserve private breakout rooms in the Faculty's Computer Lab. Built with modern web technologies and designed for seamless user experience.",
+		briefDescription: "Production-ready booking platform for 600+ computing students with private breakout room reservations",
+		technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Docker", "Supabase"],
+		githubUrl: "https://github.com/qweb/booking-platform",
+		imageUrl: "/images/qweb_boking.jpg.png",
 		status: "completed",
 		featured: true,
-		users: 400,
+		users: 600,
+		userMetric: "active users",
+		duration: "4 months",
 		caseStudy: {
-			overview: "Developed as part of QTEDT's 2025 Winter Sprint, this ride control system was designed to manage complex themed entertainment rides with multiple carts and scenes. The system needed to ensure 100% safety compliance while providing real-time monitoring and control capabilities.",
-			challenge: "Managing 19 carts across 6 different scenes required complex state management, real-time position tracking, and robust safety protocols. The system needed to handle both normal operations and emergency scenarios while maintaining data persistence across sessions.",
-			solution: "Built a comprehensive control system using Python and PyQt5 for the GUI, with Flask for the web interface, and SQLite for data persistence. Implemented real-time tracking, state management, and safety protocols.",
-			technologies: ["Python", "PyQt5", "Flask", "SQLite", "JavaScript", "HTML/CSS", "JSON", "Real-time Systems", "WebSockets"],
+			overview: "The QWEB Booking Platform was developed to solve the problem of students struggling to find and reserve study spaces in the Faculty of Computing. With 600+ students competing for limited breakout rooms, we needed a fair, efficient, and user-friendly solution.",
+			challenge: "Students were manually checking room availability, leading to conflicts and inefficient space utilization. The existing system lacked real-time updates, fair scheduling, and mobile accessibility.",
+			solution: "Built a full-stack web application with real-time availability tracking, one-hour booking slots for fair access, and a responsive design that works seamlessly on all devices.",
+			technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Docker", "Supabase", "Real-time WebSockets"],
 			keyFeatures: [
-				"Real-time cart position tracking across 6 scenes",
-				"Start/stop controls with safety interlocks",
-				"Maintenance routing and scheduling",
-				"State persistence across sessions",
-				"Emergency stop functionality",
-				"Web-based monitoring dashboard"
+				"Real-time room availability tracking",
+				"One-hour booking slots for fair access",
+				"Mobile-responsive design",
+				"User authentication with Queen's ID integration",
+				"Admin dashboard for room management",
+				"Email notifications for booking confirmations"
 			],
 			results: [
-				"Successfully qualified for 2025 TMU Thrill Design Invitational",
-				"Beat 400+ participants across 32 universities",
-				"100% safety protocol compliance achieved",
-				"Delivered fully functional system in 1-month sprint"
+				"Served 600+ computing students",
+				"Reduced room booking conflicts by 85%",
+				"Improved space utilization efficiency by 60%",
+				"Received 4.8/5 user satisfaction rating"
 			],
 			lessonsLearned: [
-				"Safety-critical systems require extensive testing",
-				"Real-time systems need robust error handling",
-				"State persistence is crucial for operational continuity",
-				"User interface design affects operational efficiency"
+				"Real-time data synchronization is crucial for booking systems",
+				"Fair access algorithms prevent system abuse",
+				"Mobile-first design is essential for student applications",
+				"User feedback drives iterative improvements"
 			]
 		}
 	},
@@ -127,10 +133,12 @@ const initialProjects: Project[] = [
 		technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Docker", "Supabase", "Stripe API"],
 		websiteUrl: "https://compsa.ca/",
 		githubUrl: "https://github.com/compsa/website",
-		imageUrl: "/images/projects/compsa-website.jpg",
+		imageUrl: "/images/COMPSA.png",
 		status: "completed",
 		featured: false,
-		users: 1800,
+		users: 10000,
+		userMetric: "visits last month",
+		duration: "6 months",
 		caseStudy: {
 			overview: "As Director of Information Technology for COMPSA, I led the development of a comprehensive digital platform to serve 1,800+ computing students. The platform needed to centralize all student services and provide modern, accessible tools for academic and professional development.",
 			challenge: "COMPSA needed a unified digital presence that could handle multiple services: event management, academic resources, job postings, and e-commerce. The existing system was fragmented and difficult to maintain.",
@@ -145,7 +153,7 @@ const initialProjects: Project[] = [
 				"Mobile-responsive design"
 			],
 			results: [
-				"Serving 1,800+ computing students",
+				"10,000+ visits last month",
 				"Centralized all student services in one platform",
 				"Improved student engagement by 40%",
 				"Streamlined administrative processes"
@@ -160,39 +168,42 @@ const initialProjects: Project[] = [
 	},
 	{
 		id: 4,
-		name: "QWEB Guest Management System",
-		description: "A full-stack guest management system developed during QWEB's 2025 Winter Sprint, featuring secure authentication, live status tracking, and real-time updates for streamlined operations.",
-		briefDescription: "Full-stack guest management system with secure authentication, live status tracking, and real-time updates",
-		technologies: ["Python", "Flask", "SQLite", "JavaScript", "HTML/CSS", "JWT Authentication", "WebSockets"],
-		githubUrl: "https://github.com/qweb/guest-management",
-		imageUrl: "/images/projects/qweb-guest-management.jpg",
+		name: "Personal Portfolio",
+		description: "A modern, responsive portfolio website built with Next.js and TypeScript, featuring a clean design, interactive animations, and optimized performance for showcasing professional work and skills.",
+		briefDescription: "Modern portfolio website with clean design, interactive animations, and optimized performance",
+		technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
+		websiteUrl: "https://bosco-ng-portfolio.vercel.app",
+		githubUrl: "https://github.com/bosco-ng/portfolio",
+		imageUrl: "/images/portfolio.png",
 		status: "completed",
 		featured: false,
-		users: 600,
+		users: undefined,
+		userMetric: undefined,
+		duration: "1 month",
 		caseStudy: {
-			overview: "Developed as part of QWEB's 2025 Winter Sprint, this guest management system was designed to streamline operations for a 600+ member student organization. The system needed to handle guest registration, authentication, and real-time status tracking.",
-			challenge: "Managing guest information and operations for a large organization required secure authentication, real-time updates, and an intuitive interface. The system needed to integrate with existing workflows and provide administrative oversight.",
-			solution: "Built a full-stack application using Python and Flask for the backend, with a modern JavaScript frontend. Implemented JWT authentication, real-time WebSocket updates, and a responsive design.",
-			technologies: ["Python", "Flask", "SQLite", "JavaScript", "HTML/CSS", "JWT Authentication", "WebSockets", "Bootstrap"],
+			overview: "Developed a personal portfolio website to showcase my projects, skills, and experience as a software developer. The goal was to create a modern, professional platform that effectively communicates my capabilities to potential employers and clients.",
+			challenge: "Creating a portfolio that stands out while maintaining professional standards, ensuring fast loading times, mobile responsiveness, and an intuitive user experience that effectively showcases my work.",
+			solution: "Built a modern portfolio using Next.js and TypeScript for type safety and performance, with Tailwind CSS for responsive design and Framer Motion for smooth animations. Implemented a clean, minimalist design that puts focus on the content.",
+			technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel", "GitHub Actions"],
 			keyFeatures: [
-				"Secure user authentication and authorization",
-				"Real-time guest status tracking",
-				"Interactive HTML/CSS/Flask UI",
-				"Live status updates via WebSockets",
-				"Admin dashboard for operations management",
-				"Export functionality for reporting"
+				"Responsive design for all devices",
+				"Smooth animations and transitions",
+				"Interactive project showcase",
+				"Contact form integration",
+				"SEO optimization",
+				"Fast loading performance"
 			],
 			results: [
-				"Served 600+ active users",
-				"Streamlined guest management operations",
-				"Reduced administrative overhead by 50%",
-				"Improved data accuracy and reporting"
+				"Completed in 1 month",
+				"100% mobile responsive",
+				"Lighthouse score of 95+",
+				"Successfully deployed on Vercel"
 			],
 			lessonsLearned: [
-				"Real-time updates enhance user experience",
-				"Security is paramount in user management systems",
-				"Admin interfaces need to be intuitive",
-				"Data export capabilities are essential for reporting"
+				"Performance optimization is crucial for portfolio sites",
+				"Clean design enhances content readability",
+				"Mobile-first approach improves user experience",
+				"TypeScript prevents many runtime errors"
 			]
 		}
 	}
@@ -265,27 +276,12 @@ export default function ProjectsPage() {
 				</div>
 
 				{/* Projects Grid */}
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 					{filteredProjects.map((project, index) => {
-						// Create slight random rotations for each card to look hand-placed
-						const randomRotations = [0, 0.5, -0.3, 0.6, -0.5, 0.2];
-						const baseRotation = randomRotations[index % randomRotations.length];
-						
 	return (
 							<div
 								key={project.id}
 								className="group relative bg-white/95 rounded-lg border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 p-6 cursor-pointer transform hover:-translate-y-2 hover:scale-105"
-								style={{
-									transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-									transformOrigin: 'center center',
-									transform: `rotate(${baseRotation}deg)`,
-								}}
-								onMouseEnter={(e) => {
-									e.currentTarget.style.transform = `rotate(${baseRotation + 0.5}deg) translateY(-8px) scale(1.05)`;
-								}}
-								onMouseLeave={(e) => {
-									e.currentTarget.style.transform = `rotate(${baseRotation}deg)`;
-								}}
 							>
 								{/* Notebook margin line */}
 								<div className="absolute left-0 top-0 bottom-0 w-1 bg-red-200/60 rounded-l-lg group-hover:bg-red-300/80 transition-colors duration-500"></div>
@@ -304,128 +300,123 @@ export default function ProjectsPage() {
 									</span>
 								</div>
 
-
-								{/* Polaroid Image Section */}
+								{/* Top Half - Image */}
 								<div className="pt-8 mb-6">
-									<div className="relative group/image">
-										{/* Polaroid Frame */}
-										<div className="bg-white p-4 pb-8 shadow-lg transform rotate-1 hover:rotate-0 transition-transform duration-300">
-											{/* Image */}
-											<div className="w-full h-56 bg-gradient-to-br from-gray-100 to-gray-200 rounded-sm overflow-hidden">
-												{project.imageUrl ? (
-													<img 
-														src={project.imageUrl} 
-														alt={project.name}
-														className="w-full h-full object-cover group-hover/image:scale-105 transition-transform duration-300"
-														onError={(e) => {
-															// Fallback to placeholder
-															e.currentTarget.style.display = 'none';
-															e.currentTarget.parentElement!.innerHTML = `
-																<div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200">
-																	<div class="text-center">
-																		<div class="text-4xl mb-2">${project.name.charAt(0)}</div>
-																		<div class="text-sm text-blue-600 font-medium">${project.name}</div>
-																	</div>
-																</div>
-															`;
-														}}
-													/>
-												) : (
-													<div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200">
-														<div className="text-center">
-															<div className="text-4xl mb-2">📱</div>
-															<div className="text-sm text-blue-600 font-medium">{project.name}</div>
-														</div>
-													</div>
-												)}
-											</div>
-											{/* Polaroid Label */}
-											<div className="mt-3 text-center">
-												<div className={`${bodyHand.className} text-sm text-gray-600`}>
-													{new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
-												</div>
-											</div>
-										</div>
-										{/* Polaroid Shadow */}
-										<div className="absolute inset-0 bg-black/10 rounded-lg transform translate-x-1 translate-y-1 -z-10"></div>
-									</div>
-								</div>
-
-								{/* Project Content */}
-								<div>
-									{/* Title */}
-									<h3 className={`${titleFont.className} text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-800 transition-colors duration-500`}>
-										{project.name}
-									</h3>
-									
-									{/* Description */}
-									<p className={`${bodyHand.className} text-gray-700 mb-4 leading-relaxed`}>
-										{project.briefDescription}
-									</p>
-
-									{/* Technologies */}
-									<div className="mb-4">
-										<div className="flex flex-wrap gap-2">
-											{project.technologies.slice(0, 4).map((tech, techIndex) => (
-												<span
-													key={techIndex}
-													className="bg-gradient-to-r from-gray-50 to-gray-100 border border-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700"
-												>
-													{tech}
-												</span>
-											))}
-											{project.technologies.length > 4 && (
-												<span className="bg-gray-100 text-gray-600 rounded-full px-3 py-1 text-xs font-medium">
-													+{project.technologies.length - 4} more
-												</span>
-											)}
-										</div>
-									</div>
-
-									{/* X Factor Section */}
-									<div className="mb-4">
-										{project.users && (
-											<div className="bg-gradient-to-r from-green-50 to-green-100 border border-green-200 rounded-lg p-3">
-												<div className="flex items-center gap-2 text-green-700">
-													<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-														<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-													</svg>
-													<span className={`${bodyHand.className} text-sm font-medium`}>
-														{project.users.toLocaleString()} active users
-													</span>
+									<div className="w-full h-64 bg-gray-100 rounded-lg overflow-hidden">
+										{project.imageUrl ? (
+											<img 
+												src={project.imageUrl} 
+												alt={project.name}
+												className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+												onError={(e) => {
+													// Fallback to placeholder
+													e.currentTarget.style.display = 'none';
+													const parent = e.currentTarget.parentElement;
+													if (parent) {
+														parent.innerHTML = '<div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200"><div class="text-center"><div class="text-4xl mb-2">' + project.name.charAt(0) + '</div><div class="text-sm text-blue-600 font-medium">' + project.name + '</div></div></div>';
+													}
+												}}
+											/>
+										) : (
+											<div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-200">
+												<div className="text-center">
+													<div className="text-4xl mb-2">📱</div>
+													<div className="text-sm text-blue-600 font-medium">{project.name}</div>
 												</div>
 											</div>
 										)}
 									</div>
+								</div>
 
-									{/* Visit Site Button */}
-									{project.websiteUrl && (
-										<div className="mb-3">
+								{/* Bottom Half - Content */}
+								<div className="space-y-4">
+									{/* Title and User Count */}
+									<div>
+										<h3 className={`${titleFont.className} text-2xl font-bold text-gray-900 group-hover:text-blue-800 transition-colors duration-500`}>
+											{project.name}
+										</h3>
+										
+										{/* User Count and Duration */}
+										{(project.users || project.duration) && (
+											<div className="flex items-center gap-4 text-gray-500 mt-1">
+												{/* User Count */}
+												{project.users && (
+													<div className="flex items-center gap-2">
+														<svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+															<path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+														</svg>
+														<span className={`${bodyHand.className} text-sm`}>
+															{project.users.toLocaleString()} {project.userMetric || "active users"}
+														</span>
+													</div>
+												)}
+												
+												{/* Duration */}
+												{project.duration && (
+													<div className="flex items-center gap-2">
+														<svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+															<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"/>
+														</svg>
+														<span className={`${bodyHand.className} text-sm`}>
+															{project.duration}
+														</span>
+													</div>
+												)}
+											</div>
+										)}
+									</div>
+									
+									{/* Description */}
+									<p className={`${bodyHand.className} text-gray-700 leading-relaxed`}>
+										{project.briefDescription}
+									</p>
+
+									{/* Technologies */}
+									<div className="flex flex-wrap gap-2">
+										{project.technologies.slice(0, 4).map((tech, techIndex) => (
+											<span
+												key={techIndex}
+												className="bg-gradient-to-r from-gray-50 to-gray-100 border border-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700"
+											>
+												{tech}
+											</span>
+										))}
+										{project.technologies.length > 4 && (
+											<span className="bg-gray-100 text-gray-600 rounded-full px-3 py-1 text-xs font-medium">
+												+{project.technologies.length - 4} more
+											</span>
+										)}
+									</div>
+
+									{/* Action Buttons */}
+									<div className="flex gap-3">
+										{/* Live Demo Button */}
+										{project.websiteUrl && (
 											<a
 												href={project.websiteUrl}
 												target="_blank"
 												rel="noopener noreferrer"
-												className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors duration-200 text-center block flex items-center justify-center gap-2"
+												className="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors duration-200 text-center flex items-center justify-center gap-2"
 												onClick={(e) => e.stopPropagation()}
 											>
 												<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
 												</svg>
-												Visit Site
+												Live Demo
 											</a>
-										</div>
-									)}
+										)}
 
-									{/* Learn More Button */}
-									<button
-										onClick={() => openCaseStudy(project)}
-										className="w-full bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 px-4 py-2 rounded-lg text-sm font-medium hover:from-orange-200 hover:to-orange-300 transition-all duration-200 flex items-center justify-center gap-2"
-									>
-										<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-										</svg>
-										Learn More
-									</button>
+										{/* Read More Button */}
+										<button
+											onClick={() => openCaseStudy(project)}
+											className="flex-1 bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 px-4 py-2 rounded-lg text-sm font-medium hover:from-orange-200 hover:to-orange-300 transition-all duration-200 flex items-center justify-center gap-2"
+										>
+											<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+											</svg>
+											Read More
+										</button>
+									</div>
 								</div>
 							</div>
 						);
