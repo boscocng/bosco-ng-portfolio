@@ -274,7 +274,7 @@ export default function Hero() {
 					</div>
 					
 					{/* Enhanced sticky note positioning */}
-					<div className="w-64 flex-shrink-0 relative">
+					<div className="w-64 flex-shrink-0 relative animate-fade-in-up animation-delay-400">
 						<div className="sticky top-8">
 							<Testimonials />
 						</div>

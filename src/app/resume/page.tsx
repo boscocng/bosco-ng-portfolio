@@ -1,8 +1,59 @@
+"use client";
+
+import React from "react";
+import { Caveat, Patrick_Hand } from "next/font/google";
+
+const headline = Caveat({
+	weight: ["700"],
+	subsets: ["latin"],
+});
+
+const bodyHand = Patrick_Hand({
+	weight: ["400"],
+	subsets: ["latin"],
+});
+
 export default function ResumePage() {
 	return (
-		<main className="mx-auto max-w-5xl px-8 py-12">
-			<h1 className="text-2xl font-semibold text-gray-900">Resume</h1>
-			<p className="mt-2 text-gray-600">Add your resume content or link a PDF here.</p>
+		<main className="min-h-screen notebook-paper">
+			<div className="mx-auto max-w-7xl px-8 py-12 relative">
+				{/* Header */}
+				<div className="mb-12 text-center">
+					<h1 className={`${headline.className} text-6xl sm:text-7xl font-bold text-gray-900 mb-4 relative inline-block`}>
+						My Resume
+						{/* Swiggly underline highlight */}
+						<svg 
+							className="absolute -bottom-2 left-0 w-full h-4 text-red-300" 
+							viewBox="0 0 200 20" 
+							fill="none" 
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path 
+								d="M5 15 Q25 5, 45 15 T85 15 T125 15 T165 15 T195 15" 
+								stroke="currentColor" 
+								strokeWidth="3" 
+								fill="none" 
+								strokeLinecap="round"
+								className="opacity-80"
+							/>
+						</svg>
+					</h1>
+				</div>
+
+				{/* Resume Container */}
+				<div className="bg-white/95 rounded-lg border border-gray-200/50 shadow-lg p-6">
+
+					{/* PDF Viewer */}
+					<div className="w-full">
+						<iframe
+							src="/images/Bosco Ng Resume.pdf#toolbar=1&navpanes=1&scrollbar=1"
+							className="w-full h-[800px] border border-gray-300 rounded-lg shadow-inner"
+							title="Bosco Ng Resume"
+						/>
+					</div>
+
+				</div>
+			</div>
 		</main>
 	);
 }

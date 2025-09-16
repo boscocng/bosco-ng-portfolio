@@ -23,6 +23,7 @@ interface Experience {
 	technologies: string[];
 	companyUrl?: string;
 	companyLogo?: string;
+	demoUrl?: string;
 	companyInfo?: {
 		description: string;
 		industry: string;
@@ -68,6 +69,7 @@ const initialExperiences: Experience[] = [
 		date: "April 2025 - Present",
 		companyUrl: "https://compsa.ca/",
 		companyLogo: "/images/queenscompsa_logo.jpg",
+		demoUrl: "https://compsa.ca/room-booking",
 		description: "Directing a 10+ member tech team building and maintaining digital tools for 1,800+ students at Queen's Computing. As the student government for Queen's School of Computing, my team and I collaborate with portfolios, faculty, professors, and the student community to deliver impactful, long-lasting products.",
 		achievements: [
 			"Launched CASLab Room Booking System serving 1,800+ computing students with private breakout room reservations",
@@ -150,32 +152,9 @@ const initialExperiences: Experience[] = [
 
 export default function ExperiencePage() {
 	const [experiences, setExperiences] = useState<Experience[]>(initialExperiences);
-	const [editingId, setEditingId] = useState<number | null>(null);
-	const [editingDescription, setEditingDescription] = useState("");
 	const [cardViews, setCardViews] = useState<{ [key: number]: 'role' | 'company' }>({});
 	const [activeCard, setActiveCard] = useState<number>(1);
 
-	const handleEditDescription = (id: number, currentDescription: string) => {
-		setEditingId(id);
-		setEditingDescription(currentDescription);
-	};
-
-	const handleSaveDescription = (id: number) => {
-		setExperiences(prev => 
-			prev.map(exp => 
-				exp.id === id 
-					? { ...exp, description: editingDescription }
-					: exp
-			)
-		);
-		setEditingId(null);
-		setEditingDescription("");
-	};
-
-	const handleCancelEdit = () => {
-		setEditingId(null);
-		setEditingDescription("");
-	};
 
 	const toggleCardView = (id: number) => {
 		setCardViews(prev => ({
@@ -464,47 +443,9 @@ export default function ExperiencePage() {
 														<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
 													</svg>
 												</h3>
-												{editingId === experience.id ? (
-													<div className="space-y-4">
-														<textarea
-															value={editingDescription}
-															onChange={(e) => setEditingDescription(e.target.value)}
-															className={`${bodyHand.className} w-full p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
-															rows={4}
-															placeholder="Describe what you did in this role..."
-														/>
-														<div className="flex gap-3">
-															<button
-																onClick={() => handleSaveDescription(experience.id)}
-																className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-															>
-																Save
-															</button>
-															<button
-																onClick={handleCancelEdit}
-																className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors"
-															>
-																Cancel
-															</button>
-														</div>
-													</div>
-												) : (
-													<div className="relative group">
-														<p className={`${bodyHand.className} text-lg text-gray-700 leading-relaxed bg-blue-50/50 p-4 rounded-lg border-l-4 border-blue-200`}>
-															{experience.description}
-														</p>
-														<button
-															onClick={() => handleEditDescription(experience.id, experience.description)}
-															className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-2 text-gray-400 hover:text-gray-600"
-															title="Edit description"
-														>
-															<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-																<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-																<path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-															</svg>
-														</button>
-													</div>
-												)}
+												<p className={`${bodyHand.className} text-lg text-gray-700 leading-relaxed bg-blue-50/50 p-4 rounded-lg border-l-4 border-blue-200`}>
+													{experience.description}
+												</p>
 											</div>
 
 											{/* Key Achievements */}
@@ -548,6 +489,29 @@ export default function ExperiencePage() {
 													))}
 												</div>
 											</div>
+
+											{/* Live Site Link */}
+											{experience.demoUrl && (
+												<div>
+													<h3 className={`${headline.className} text-2xl font-semibold text-gray-800 mb-3 flex items-center gap-2`}>
+														<span>Live Site</span>
+														<svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+														</svg>
+													</h3>
+													<a
+														href={experience.demoUrl}
+														target="_blank"
+														rel="noopener noreferrer"
+														className="inline-flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 shadow-sm hover:shadow-md"
+													>
+														<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+														</svg>
+														<span className={`${bodyHand.className} text-sm font-medium`}>Visit Live Site</span>
+													</a>
+												</div>
+											)}
 										</div>
 									</div>
 								)}
@@ -661,54 +625,63 @@ export default function ExperiencePage() {
 												<span className="text-emerald-500 text-2xl">💡</span>
 											</h3>
 											
-											{/* Grid layout for better space utilization */}
-											<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+											{/* Varied formatting for each key fact */}
+											<div className="space-y-4">
 												{experience.companyInfo.keyFacts.map((fact, factIndex) => {
-													// Make first two facts more prominent
-													const isHighlighted = factIndex < 2;
+													// Different styles for each fact
+													const styles = [
+														{
+															container: 'bg-gradient-to-r from-blue-50 to-blue-100 border-l-4 border-blue-400 shadow-sm hover:shadow-md',
+															icon: 'bg-blue-500 text-white',
+															iconSymbol: '🏢',
+															text: 'text-blue-800 font-semibold'
+														},
+														{
+															container: 'bg-gradient-to-r from-orange-50 to-orange-100 border-l-4 border-orange-400 shadow-sm hover:shadow-md',
+															icon: 'bg-orange-500 text-white',
+															iconSymbol: '⭐',
+															text: 'text-orange-800 font-semibold'
+														},
+														{
+															container: 'bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-green-400 shadow-sm hover:shadow-md',
+															icon: 'bg-green-500 text-white',
+															iconSymbol: '🎯',
+															text: 'text-green-800 font-semibold'
+														},
+														{
+															container: 'bg-gradient-to-r from-purple-50 to-purple-100 border-l-4 border-purple-400 shadow-sm hover:shadow-md',
+															icon: 'bg-purple-500 text-white',
+															iconSymbol: '💡',
+															text: 'text-purple-800 font-semibold'
+														}
+													];
+													
+													const currentStyle = styles[factIndex % styles.length];
+													
 													return (
 														<div 
 															key={factIndex}
-															className={`group/fact relative p-4 rounded-lg border transition-all duration-500 hover:scale-105 ${
-																isHighlighted 
-																	? 'bg-gradient-to-br from-emerald-50 to-emerald-100 border-emerald-200 shadow-md hover:shadow-lg' 
-																	: 'bg-gradient-to-br from-gray-50 to-gray-100 border-gray-200 shadow-sm hover:shadow-md'
-															}`}
+															className={`group/fact relative p-4 rounded-r-lg transition-all duration-300 hover:scale-[1.01] hover:translate-x-1 ${currentStyle.container}`}
 															style={{
-																transitionDelay: `${factIndex * 150}ms`
+																transitionDelay: `${factIndex * 100}ms`
 															}}
 														>
-															{/* Highlighted facts get special treatment */}
-															{isHighlighted && (
-																<div className="absolute -top-2 -right-2 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg">
-																	<span className="text-white text-xs font-bold">!</span>
-																</div>
-															)}
-															
-															<div className="flex items-start gap-3">
-																<div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-																	isHighlighted 
-																		? 'bg-emerald-500 text-white' 
-																		: 'bg-emerald-200 text-emerald-700'
-																}`}>
-																	<span className="text-sm font-bold">{factIndex + 1}</span>
+															<div className="flex items-start gap-4">
+																{/* Icon with emoji */}
+																<div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${currentStyle.icon} shadow-md group-hover/fact:scale-105 transition-transform duration-300`}>
+																	<span className="text-lg">{currentStyle.iconSymbol}</span>
 																</div>
 																
+																{/* Content */}
 																<div className="flex-1">
-																	<p className={`${bodyHand.className} ${
-																		isHighlighted 
-																			? 'text-lg font-semibold text-gray-800 group-hover/fact:text-emerald-800' 
-																			: 'text-base text-gray-700 group-hover/fact:text-gray-800'
-																	} transition-colors duration-500 leading-relaxed`}>
+																	<p className={`${bodyHand.className} ${currentStyle.text} text-base leading-relaxed group-hover/fact:scale-[1.02] transition-transform duration-300`}>
 																		{fact}
 																	</p>
 																</div>
 															</div>
 															
-															{/* Decorative element for highlighted facts */}
-															{isHighlighted && (
-																<div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-b-lg opacity-0 group-hover/fact:opacity-100 transition-opacity duration-500"></div>
-															)}
+															{/* Subtle bottom accent */}
+															<div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-current to-transparent opacity-0 group-hover/fact:opacity-30 transition-opacity duration-500"></div>
 														</div>
 													);
 												})}
@@ -722,12 +695,12 @@ export default function ExperiencePage() {
 									</div>
 								)}
 
-								{/* Scribbled Arrow - Always visible */}
+								{/* Hand-drawn Arrow - Subtle and themed */}
 								<div 
-									className={`absolute right-4 top-1/2 transform -translate-y-1/2 transition-all duration-500 cursor-pointer z-50 ${
+									className={`absolute right-6 top-1/2 transform -translate-y-1/2 transition-all duration-500 cursor-pointer z-50 pointer-events-auto ${
 										isCompanyView 
 											? 'opacity-100' 
-											: 'opacity-40 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0'
+											: 'opacity-50 group-hover:opacity-100 translate-x-3 group-hover:translate-x-0'
 									}`}
 									onClick={(e) => {
 										e.preventDefault();
@@ -736,28 +709,26 @@ export default function ExperiencePage() {
 									}}
 									title={isCompanyView ? 'View My Role' : 'Learn About Company'}
 								>
-									<svg 
-										width="40" 
-										height="40" 
-										viewBox="0 0 24 24" 
-										className="text-yellow-400"
-									>
-										<path 
-											d="M4 12 L18 12 M14 8 L18 12 L14 16" 
-											stroke="currentColor" 
-											strokeWidth="3" 
-											fill="none" 
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											className={`scribble-arrow transition-transform duration-300 ${
-												isCompanyView ? 'scale-x-[-1]' : ''
-											}`}
-											style={{
-												strokeDasharray: '30',
-												strokeDashoffset: isCompanyView ? '0' : '30'
-											}}
-										/>
-									</svg>
+									<div className="relative">
+										{/* Hand-drawn arrow with subtle background */}
+										<div className="w-8 h-8 bg-yellow-100/80 rounded-full flex items-center justify-center border border-yellow-200/60 group-hover:bg-yellow-200/90 group-hover:border-yellow-300/80 transition-all duration-300">
+											<svg 
+												width="16" 
+												height="16" 
+												viewBox="0 0 24 24" 
+												fill="none"
+												stroke="#f59e0b"
+												strokeWidth="2.5"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												className={`transition-transform duration-300 ${
+													isCompanyView ? 'rotate-180' : 'rotate-0'
+												}`}
+											>
+												<path d="M9 18l6-6-6-6" />
+											</svg>
+										</div>
+									</div>
 								</div>
 
 

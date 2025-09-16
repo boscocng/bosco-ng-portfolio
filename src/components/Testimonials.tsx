@@ -13,7 +13,7 @@ const testimonials = [
 		name: "Khyle Sewpersaud",
 		role: "Co-Chair",
 		company: "Queen's University Web Development",
-		text: "Bosco has always put his foot forward before anyone else when it comes to doing that which is difficult. It always impressed me the lengths he went to solve even the most challenging of problem.",
+		text: "Bosco has always put his foot forward before anyone else when it comes to doing that which is difficult. It always impressed me the lengths he went to solve even the most challenging of problems.",
 		color: "from-yellow-200 to-yellow-100",
 		borderColor: "border-yellow-300",
 		rotation: "rotate-1",
