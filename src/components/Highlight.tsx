@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { annotate, type RoughAnnotation } from "rough-notation";
+import { annotate } from "rough-notation";
 
 type HighlightProps = {
   children: React.ReactNode;
@@ -20,7 +20,7 @@ export default function Highlight({
 
   useEffect(() => {
     if (!spanRef.current) return;
-    let annotation: RoughAnnotation | undefined;
+    let annotation: ReturnType<typeof annotate> | undefined;
     
     const timer = setTimeout(() => {
       annotation = annotate(spanRef.current!, {

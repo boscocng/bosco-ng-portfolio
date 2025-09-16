@@ -249,7 +249,7 @@ const initialProjects: Project[] = [
 ];
 
 export default function ProjectsPage() {
-	const [projects, setProjects] = useState<Project[]>(initialProjects);
+	const [projects] = useState<Project[]>(initialProjects);
 	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 	const [filter, setFilter] = useState<"all" | "completed" | "in-progress">("all");
 
@@ -301,7 +301,7 @@ export default function ProjectsPage() {
 						].map(({ key, label }) => (
 							<button
 								key={key}
-								onClick={() => setFilter(key as any)}
+								onClick={() => setFilter(key as "all" | "completed" | "in-progress")}
 								className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
 									filter === key
 										? "bg-white text-gray-900 shadow-sm"
@@ -316,7 +316,7 @@ export default function ProjectsPage() {
 
 				{/* Projects Grid */}
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-					{filteredProjects.map((project, index) => {
+					{filteredProjects.map((project) => {
 	return (
 							<div
 								key={project.id}

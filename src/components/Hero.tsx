@@ -157,7 +157,7 @@ export default function Hero() {
 				{/* Enhanced header with better typography and spacing */}
 				<div className="space-y-6">
 					<h1 className={`${headline.className} text-6xl sm:text-8xl font-bold leading-tight text-gray-900 animate-fade-in-up relative`}>
-						Hi, I'm <span className="font-bold relative inline-block">
+						Hi, I&apos;m <span className="font-bold relative inline-block">
 							<span className="relative z-10">Bosco</span>
 							{/* Subtle underline effect */}
 							<span className="absolute bottom-2 left-0 w-full h-2 bg-gradient-to-r from-transparent via-pink-200 to-transparent opacity-60 transform -skew-x-12"></span>
@@ -165,7 +165,7 @@ export default function Hero() {
 					</h1>
 					
 					<p className={`${bodyHand.className} text-xl sm:text-2xl leading-9 text-gray-700 max-w-4xl animate-fade-in-up animation-delay-100 relative`}>
-						I'm a <Highlight color="rgba(253, 230, 138, 0.45)" delay={200}>software engineer</Highlight> and <Highlight color="rgba(253, 230, 138, 0.45)" delay={400}>second‑year CS student</Highlight> at Queen's University. At my core, I'm a <Highlight color="rgba(251, 146, 60, 0.45)" delay={600}>leader</Highlight> who bridges programming, creativity, and technology to <Highlight color="rgba(248, 113, 113, 0.35)" delay={800}>drive impact</Highlight>.
+						I&apos;m a <Highlight color="rgba(253, 230, 138, 0.45)" delay={200}>software engineer</Highlight> and <Highlight color="rgba(253, 230, 138, 0.45)" delay={400}>second‑year CS student</Highlight> at Queen&apos;s University. At my core, I&apos;m a <Highlight color="rgba(251, 146, 60, 0.45)" delay={600}>leader</Highlight> who bridges programming, creativity, and technology to <Highlight color="rgba(248, 113, 113, 0.35)" delay={800}>drive impact</Highlight>.
 					</p>
 				</div>
 
@@ -174,7 +174,7 @@ export default function Hero() {
 						{/* Enhanced paragraph with better visual hierarchy */}
 						<div className="relative">
 							<p className={`${bodyHand.className} text-xl sm:text-2xl leading-9 text-gray-700 animate-fade-in-up animation-delay-200 relative z-10`}>
-								I've <Highlight color="rgba(253, 230, 138, 0.45)" delay={1000}>led teams</Highlight> across <Highlight color="rgba(251, 146, 60, 0.35)" delay={1200}>6+ projects</Highlight> to ship <Highlight color="rgba(253, 230, 138, 0.45)" delay={1400}>award‑winning</Highlight> web applications serving <Highlight color="rgba(248, 113, 113, 0.35)" delay={1600}>2,400+ active users</Highlight>. If you want a <Underline delay={1800}>product‑minded</Underline> and <Underline delay={2000}>impact‑driven</Underline> Summer 2026 Developer Intern, <span className="relative inline-block align-baseline px-1"><span className="relative z-10">hire me</span><span aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 hand-circle"><svg width="140" height="50" viewBox="0 0 140 50" fill="none"><ellipse ref={circleRef} className="draw-stroke" style={{ ['--len' as any]: 220, ['--dash' as any]: 220 }} cx="70" cy="25" rx="52" ry="14"/><ellipse ref={outerCircleRef} className="draw-stroke-outer" style={{ ['--len' as any]: 280, ['--dash' as any]: 280 }} cx="70" cy="25" rx="58" ry="18"/></svg></span></span>.
+								I&apos;ve <Highlight color="rgba(253, 230, 138, 0.45)" delay={1000}>led teams</Highlight> across <Highlight color="rgba(251, 146, 60, 0.35)" delay={1200}>6+ projects</Highlight> to ship <Highlight color="rgba(253, 230, 138, 0.45)" delay={1400}>award‑winning</Highlight> web applications serving <Highlight color="rgba(248, 113, 113, 0.35)" delay={1600}>2,400+ active users</Highlight>. If you want a <Underline delay={1800}>product‑minded</Underline> and <Underline delay={2000}>impact‑driven</Underline> Summer 2026 Developer Intern, <span className="relative inline-block align-baseline px-1"><span className="relative z-10">hire me</span><span aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 hand-circle"><svg width="140" height="50" viewBox="0 0 140 50" fill="none"><ellipse ref={circleRef} className="draw-stroke" style={{ ['--len' as string]: 220, ['--dash' as string]: 220 }} cx="70" cy="25" rx="52" ry="14"/><ellipse ref={outerCircleRef} className="draw-stroke-outer" style={{ ['--len' as string]: 280, ['--dash' as string]: 280 }} cx="70" cy="25" rx="58" ry="18"/></svg></span></span>.
 							</p>
 							{/* Subtle background highlight for the paragraph */}
 							<div className="absolute inset-0 bg-gradient-to-r from-yellow-50/30 via-transparent to-pink-50/30 rounded-lg -z-10 transform -skew-y-1"></div>
@@ -194,7 +194,7 @@ export default function Hero() {
 								{/* Single centered circle on hover - positioned to match button content */}
 								<span className="pointer-events-none absolute inset-0 opacity-0 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:scale-110 hand-circle flex items-center justify-center">
 									<svg width="160" height="48" viewBox="0 0 160 48" fill="none">
-										<ellipse className="draw-stroke" style={{ ['--len' as any]: 480, ['--dash' as any]: 480 }} cx="80" cy="24" rx="72" ry="16"/>
+										<ellipse className="draw-stroke" style={{ ['--len' as string]: 480, ['--dash' as string]: 480 }} cx="80" cy="24" rx="72" ry="16"/>
 									</svg>
 								</span>
 							</div>
@@ -211,7 +211,7 @@ export default function Hero() {
 									</div>
 									<span aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100 hand-circle">
 										<svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-											<ellipse className="draw-stroke" style={{ ['--len' as any]: 140, ['--dash' as any]: 140 }} cx="22" cy="22" rx="18" ry="10"/>
+											<ellipse className="draw-stroke" style={{ ['--len' as string]: 140, ['--dash' as string]: 140 }} cx="22" cy="22" rx="18" ry="10"/>
 										</svg>
 									</span>
 								</Link>
@@ -235,7 +235,7 @@ export default function Hero() {
 													message.parentNode.removeChild(message);
 												}
 											}, 3000);
-										} catch (error) {
+										} catch {
 											// Fallback: show email in alert
 											alert('Email: bosco.c.ng@gmail.com');
 										}
@@ -251,7 +251,7 @@ export default function Hero() {
 									</div>
 									<span aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100 hand-circle">
 										<svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-											<ellipse className="draw-stroke" style={{ ['--len' as any]: 140, ['--dash' as any]: 140 }} cx="22" cy="22" rx="18" ry="10"/>
+											<ellipse className="draw-stroke" style={{ ['--len' as string]: 140, ['--dash' as string]: 140 }} cx="22" cy="22" rx="18" ry="10"/>
 										</svg>
 									</span>
 								</button>
@@ -265,7 +265,7 @@ export default function Hero() {
 									</div>
 									<span aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100 hand-circle">
 										<svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-											<ellipse className="draw-stroke" style={{ ['--len' as any]: 140, ['--dash' as any]: 140 }} cx="22" cy="22" rx="18" ry="10"/>
+											<ellipse className="draw-stroke" style={{ ['--len' as string]: 140, ['--dash' as string]: 140 }} cx="22" cy="22" rx="18" ry="10"/>
 										</svg>
 									</span>
 								</Link>

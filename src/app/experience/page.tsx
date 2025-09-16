@@ -151,7 +151,7 @@ const initialExperiences: Experience[] = [
 ];
 
 export default function ExperiencePage() {
-	const [experiences, setExperiences] = useState<Experience[]>(initialExperiences);
+	const [experiences] = useState<Experience[]>(initialExperiences);
 	const [cardViews, setCardViews] = useState<{ [key: number]: 'role' | 'company' }>({});
 	const [activeCard, setActiveCard] = useState<number>(1);
 
@@ -238,7 +238,7 @@ export default function ExperiencePage() {
 						</div>
 						
 						{/* Hand-drawn Timeline Dots */}
-						{experiences.map((experience, index) => (
+						{experiences.map((experience) => (
 							<button
 								key={experience.id}
 								onClick={() => scrollToCard(experience.id)}

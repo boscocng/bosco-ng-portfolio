@@ -46,7 +46,7 @@ export default function Header() {
 										: 'linear-gradient(180deg, rgba(248,113,113,0.9), rgba(239,68,68,0.78))',
 									marginLeft: idx === 0 ? 0 : -12,
 									// base stacking; hover will override with z-index:999
-									['--z' as any]: String(30 - idx),
+									['--z' as string]: String(30 - idx),
 								}}
 							>
 								{item.label}

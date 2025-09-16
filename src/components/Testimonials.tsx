@@ -94,7 +94,7 @@ export default function Testimonials() {
 								<div className="relative p-4 space-y-3 h-full flex flex-col z-10">
 									{/* Quote mark */}
 									<div className="text-2xl text-gray-400 font-serif leading-none">
-										"
+										&ldquo;
 									</div>
 									
 									{/* Testimonial text */}
