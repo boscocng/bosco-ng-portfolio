@@ -12,10 +12,10 @@ const headline = Caveat({
 export default function ResumePage() {
 	return (
 		<main className="min-h-screen notebook-paper">
-			<div className="mx-auto max-w-7xl px-8 py-12 relative">
+			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative">
 				{/* Header */}
 				<div className="mb-12 text-center">
-					<h1 className={`${headline.className} text-6xl sm:text-7xl font-bold text-gray-900 mb-4 relative inline-block`}>
+					<h1 className={`${headline.className} text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 relative inline-block`}>
 						My Resume
 						{/* Swiggly underline highlight */}
 						<svg 
@@ -37,13 +37,13 @@ export default function ResumePage() {
 				</div>
 
 				{/* Resume Container */}
-				<div className="bg-white/95 rounded-lg border border-gray-200/50 shadow-lg p-6">
+				<div className="bg-white/95 rounded-lg border border-gray-200/50 shadow-lg p-4 sm:p-6">
 
 					{/* PDF Viewer */}
 					<div className="w-full">
 						<iframe
 							src="/images/Bosco Ng Resume.pdf#toolbar=1&navpanes=1&scrollbar=1"
-							className="w-full h-[800px] border border-gray-300 rounded-lg shadow-inner"
+							className="w-full h-[600px] sm:h-[700px] lg:h-[800px] border border-gray-300 rounded-lg shadow-inner"
 							title="Bosco Ng Resume"
 						/>
 					</div>

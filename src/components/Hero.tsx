@@ -156,24 +156,24 @@ export default function Hero() {
 			<div className="w-full space-y-8 relative z-10">
 				{/* Enhanced header with better typography and spacing */}
 				<div className="space-y-6">
-					<h1 className={`${headline.className} text-6xl sm:text-8xl font-bold leading-tight text-gray-900 animate-fade-in-up relative`}>
+					<h1 className={`${headline.className} text-4xl sm:text-6xl md:text-8xl font-bold leading-tight text-gray-900 animate-fade-in-up relative`}>
 						Hi, I&apos;m <span className="font-bold relative inline-block">
 							<span className="relative z-10">Bosco</span>
 							{/* Subtle underline effect */}
-							<span className="absolute bottom-2 left-0 w-full h-2 bg-gradient-to-r from-transparent via-pink-200 to-transparent opacity-60 transform -skew-x-12"></span>
+							<span className="absolute bottom-1 sm:bottom-2 left-0 w-full h-1 sm:h-2 bg-gradient-to-r from-transparent via-pink-200 to-transparent opacity-60 transform -skew-x-12"></span>
 						</span>
 					</h1>
 					
-					<p className={`${bodyHand.className} text-xl sm:text-2xl leading-9 text-gray-700 max-w-4xl animate-fade-in-up animation-delay-100 relative`}>
+					<p className={`${bodyHand.className} text-lg sm:text-xl md:text-2xl leading-7 sm:leading-8 md:leading-9 text-gray-700 max-w-4xl animate-fade-in-up animation-delay-100 relative`}>
 						I&apos;m a <Highlight color="rgba(253, 230, 138, 0.45)" delay={200}>software engineer</Highlight> and <Highlight color="rgba(253, 230, 138, 0.45)" delay={400}>second‑year CS student</Highlight> at Queen&apos;s University. At my core, I&apos;m a <Highlight color="rgba(251, 146, 60, 0.45)" delay={600}>leader</Highlight> who bridges programming, creativity, and technology to <Highlight color="rgba(248, 113, 113, 0.35)" delay={800}>drive impact</Highlight>.
 					</p>
 				</div>
 
-				<div className="flex items-start gap-10">
-					<div className="flex-1 max-w-2xl space-y-6">
+				<div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-10">
+					<div className="flex-1 max-w-2xl space-y-4 sm:space-y-6">
 						{/* Enhanced paragraph with better visual hierarchy */}
 						<div className="relative">
-							<p className={`${bodyHand.className} text-xl sm:text-2xl leading-9 text-gray-700 animate-fade-in-up animation-delay-200 relative z-10`}>
+							<p className={`${bodyHand.className} text-base sm:text-lg md:text-xl lg:text-2xl leading-6 sm:leading-7 md:leading-8 lg:leading-9 text-gray-700 animate-fade-in-up animation-delay-200 relative z-10`}>
 								I&apos;ve <Highlight color="rgba(253, 230, 138, 0.45)" delay={1000}>led teams</Highlight> across <Highlight color="rgba(251, 146, 60, 0.35)" delay={1200}>6+ projects</Highlight> to ship <Highlight color="rgba(253, 230, 138, 0.45)" delay={1400}>award‑winning</Highlight> web applications serving <Highlight color="rgba(248, 113, 113, 0.35)" delay={1600}>2,400+ active users</Highlight>. If you want a <Underline delay={1800}>product‑minded</Underline> and <Underline delay={2000}>impact‑driven</Underline> Summer 2026 Developer Intern, <span className="relative inline-block align-baseline px-1"><span className="relative z-10">hire me</span><span aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 hand-circle"><svg width="140" height="50" viewBox="0 0 140 50" fill="none"><ellipse ref={circleRef} className="draw-stroke" style={{ ['--len' as string]: 220, ['--dash' as string]: 220 }} cx="70" cy="25" rx="52" ry="14"/><ellipse ref={outerCircleRef} className="draw-stroke-outer" style={{ ['--len' as string]: 280, ['--dash' as string]: 280 }} cx="70" cy="25" rx="58" ry="18"/></svg></span></span>.
 							</p>
 							{/* Subtle background highlight for the paragraph */}
@@ -181,14 +181,14 @@ export default function Hero() {
 						</div>
 
 						{/* Enhanced call to action and social links */}
-						<div className="space-y-6 animate-fade-in-up animation-delay-300">
+						<div className="space-y-4 sm:space-y-6 animate-fade-in-up animation-delay-300">
 							{/* Enhanced CTA button */}
 							<div className="relative inline-block group">
 								<Link
 									href="/experience"
-									className="group inline-flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-gray-700 transition-all duration-300 hover:scale-105 bg-white/50 backdrop-blur-sm px-6 py-3 rounded-lg border border-gray-200/50 shadow-sm hover:shadow-md"
+									className="group inline-flex items-center gap-2 sm:gap-3 text-base sm:text-lg font-medium text-gray-900 hover:text-gray-700 transition-all duration-300 hover:scale-105 bg-white/50 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-gray-200/50 shadow-sm hover:shadow-md"
 								>
-									<span className={`${bodyHand.className} text-xl`}>See More About Me</span>
+									<span className={`${bodyHand.className} text-lg sm:text-xl`}>See More About Me</span>
 									<span aria-hidden className="inline-block text-gray-600 group-hover:text-gray-800 transition-all duration-300 group-hover:translate-x-2">→</span>
 								</Link>
 								{/* Single centered circle on hover - positioned to match button content */}
@@ -200,9 +200,9 @@ export default function Hero() {
 							</div>
 
 							{/* Enhanced social links with better spacing and effects */}
-							<div className="flex items-center gap-8 text-gray-500">
+							<div className="flex items-center gap-4 sm:gap-6 lg:gap-8 text-gray-500">
 								<Link aria-label="LinkedIn" href="https://www.linkedin.com/in/bosco-c-ng/" target="_blank" className="relative inline-flex items-center justify-center transition-all duration-300 hover:text-gray-900 hover:scale-110 group">
-									<div className="relative p-3 rounded-full bg-white/30 backdrop-blur-sm border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-300">
+									<div className="relative p-2 sm:p-3 rounded-full bg-white/30 backdrop-blur-sm border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-300">
 										<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="relative">
 											<rect x="2" y="9" width="4" height="12" rx="1"/>
 											<circle cx="4" cy="4" r="2"/>
@@ -243,7 +243,7 @@ export default function Hero() {
 									className="relative inline-flex items-center justify-center transition-all duration-300 hover:text-gray-900 hover:scale-110 group cursor-pointer"
 									title="Click to copy email address"
 								>
-									<div className="relative p-3 rounded-full bg-white/30 backdrop-blur-sm border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-300">
+									<div className="relative p-2 sm:p-3 rounded-full bg-white/30 backdrop-blur-sm border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-300">
 										<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="relative">
 											<rect x="3" y="5" width="18" height="14" rx="2"/>
 											<path d="M3 7.5 12 13l9-5.5"/>
@@ -257,7 +257,7 @@ export default function Hero() {
 								</button>
 								
 								<Link aria-label="GitHub" href="https://github.com/boscocng" target="_blank" className="relative inline-flex items-center justify-center transition-all duration-300 hover:text-gray-900 hover:scale-110 group">
-									<div className="relative p-3 rounded-full bg-white/30 backdrop-blur-sm border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-300">
+									<div className="relative p-2 sm:p-3 rounded-full bg-white/30 backdrop-blur-sm border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-300">
 										<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="relative">
 											<path d="M9 19c-4 1.5-4-2.5-6-3"/>
 											<path d="M15 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7a5.44 5.44 0 0 0-1.5-3.77 5.07 5.07 0 0 0-.09-3.77s-1.18-.35-3.9 1.48a13.38 13.38 0 0 0-7 0c-2.72-1.83-3.9-1.48-3.9-1.48a5.07 5.07 0 0 0-.09 3.77 5.44 5.44 0 0 0-1.5 3.77c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.61V22"/>

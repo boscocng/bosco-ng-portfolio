@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Bosco Ng - Software Engineer & CS Student",
   description: "Hi, I'm Bosco! A software engineer and second-year CS student at Queen's University. I've led teams across 6+ projects to ship award-winning web applications serving 2,400+ active users.",
   openGraph: {
-    title: "Bosco Ng - Software Engineer & CS Student",
+    title: "Hi, I'm Bosco",
     description: "Hi, I'm Bosco! A software engineer and second-year CS student at Queen's University. I've led teams across 6+ projects to ship award-winning web applications serving 2,400+ active users.",
     images: ["/images/portfolio.png"],
   },

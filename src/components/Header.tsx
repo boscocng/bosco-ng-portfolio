@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Caveat } from "next/font/google";
+import { useState } from "react";
 
 const headline = Caveat({
 	weight: ["700"],
@@ -15,6 +16,8 @@ const navigationLinks = [
 ] as const;
 
 export default function Header() {
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
 	return (
 		<header className="sticky top-0 z-50 w-full bg-white">
 			{/* Inner bleed: soft vignette on top corners and slight top fade for natural transition */}
@@ -23,14 +26,15 @@ export default function Header() {
 				className="pointer-events-none absolute inset-0 [background:linear-gradient(to_bottom,rgba(0,0,0,0.035),transparent_60%),radial-gradient(160px_24px_at_0_0,rgba(0,0,0,0.05),transparent_60%),radial-gradient(160px_24px_at_100%_0,rgba(0,0,0,0.05),transparent_60%)]"
 			/>
 
-			<div className="relative z-10 mx-auto max-w-5xl px-8 py-4">
+			<div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-8 py-4">
 				<div className="flex items-center justify-between">
 					<Link href="/" className="group relative">
-						<div className={`${headline.className} text-2xl sm:text-3xl font-bold text-gray-900 relative z-10 transition-transform duration-200 group-hover:scale-105`}>
+						<div className={`${headline.className} text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 relative z-10 transition-transform duration-200 group-hover:scale-105`}>
 							Bosco Ng
 						</div>
 					</Link>
 
+					{/* Desktop Navigation */}
 					<nav className="hidden md:flex notebook-tabs gap-1 text-sm font-mono">
 						{navigationLinks.map((item, idx) => (
 							<Link
@@ -53,7 +57,42 @@ export default function Header() {
 							</Link>
 						))}
 					</nav>
+
+					{/* Mobile Menu Button */}
+					<button
+						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+						className="md:hidden p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+						aria-label="Toggle mobile menu"
+					>
+						<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							{isMobileMenuOpen ? (
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+							) : (
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+							)}
+						</svg>
+					</button>
 				</div>
+
+				{/* Mobile Navigation */}
+				{isMobileMenuOpen && (
+					<nav className="md:hidden mt-2 pb-3">
+						<div className="rounded-lg border border-gray-200 bg-white shadow-lg overflow-hidden">
+							<div className="flex flex-col divide-y divide-gray-200">
+								{navigationLinks.map((item) => (
+									<Link
+										key={item.href}
+										href={item.href}
+										onClick={() => setIsMobileMenuOpen(false)}
+										className="px-4 py-3 text-base text-gray-800 hover:bg-gray-50 transition-colors"
+									>
+										{item.label}
+									</Link>
+								))}
+							</div>
+						</div>
+					</nav>
+				)}
 			</div>
 			{/* Outer shadow below: strongest underneath, fading downward and inward */}
 			<div

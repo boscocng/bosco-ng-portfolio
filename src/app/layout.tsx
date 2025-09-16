@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Bosco Ng" }],
   creator: "Bosco Ng",
   openGraph: {
-    title: "Bosco Ng - Software Engineer & CS Student",
+    title: "Hi, I'm Bosco",
     description: "Portfolio of Bosco Ng, a software engineer and second-year CS student at Queen's University. Showcasing projects, experience, and technical skills in full-stack development.",
     url: "https://boscong.me",
     siteName: "Bosco Ng Portfolio",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bosco Ng - Software Engineer & CS Student",
+    title: "Hi, I'm Bosco",
     description: "Portfolio of Bosco Ng, a software engineer and second-year CS student at Queen's University.",
     images: ["/images/portfolio.png"],
   },

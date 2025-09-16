@@ -267,10 +267,10 @@ export default function ProjectsPage() {
 
 	return (
 		<main className="min-h-screen notebook-paper">
-			<div className="mx-auto max-w-7xl px-8 py-12 relative">
+			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative">
 				{/* Header */}
 				<div className="mb-12 text-center">
-					<h1 className={`${headline.className} text-6xl sm:text-7xl font-bold text-gray-900 mb-4 relative inline-block`}>
+					<h1 className={`${headline.className} text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 relative inline-block`}>
 						My Projects
 						{/* Swiggly underline highlight */}
 						<svg 
@@ -292,8 +292,8 @@ export default function ProjectsPage() {
 				</div>
 
 				{/* Filter Tabs */}
-				<div className="mb-8 flex justify-center">
-					<div className="flex space-x-2 bg-gray-100 p-1 rounded-lg">
+				<div className="mb-6 sm:mb-8 flex justify-center">
+					<div className="flex flex-wrap justify-center gap-1 sm:gap-2 bg-gray-100 p-1 rounded-lg">
 						{[
 							{ key: "all", label: "All Projects" },
 							{ key: "completed", label: "Completed" },
@@ -302,7 +302,7 @@ export default function ProjectsPage() {
 							<button
 								key={key}
 								onClick={() => setFilter(key as "all" | "completed" | "in-progress")}
-								className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+								className={`px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-all duration-200 ${
 									filter === key
 										? "bg-white text-gray-900 shadow-sm"
 										: "text-gray-600 hover:text-gray-900"
@@ -315,12 +315,12 @@ export default function ProjectsPage() {
 				</div>
 
 				{/* Projects Grid */}
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
 					{filteredProjects.map((project) => {
 	return (
 							<div
 								key={project.id}
-								className="group relative bg-white/95 rounded-lg border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 p-6 cursor-pointer transform hover:-translate-y-2 hover:scale-105"
+								className="group relative bg-white/95 rounded-lg border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 p-4 sm:p-6 cursor-pointer transform hover:-translate-y-2 hover:scale-105"
 							>
 								{/* Notebook margin line */}
 								<div className="absolute left-0 top-0 bottom-0 w-1 bg-red-200/60 rounded-l-lg group-hover:bg-red-300/80 transition-colors duration-500"></div>
@@ -340,8 +340,8 @@ export default function ProjectsPage() {
 								</div>
 
 								{/* Top Half - Image */}
-								<div className="pt-8 mb-6">
-									<div className="w-full h-64 bg-gray-100 rounded-lg overflow-hidden">
+								<div className="pt-6 sm:pt-8 mb-4 sm:mb-6">
+									<div className="w-full h-48 sm:h-64 bg-gray-100 rounded-lg overflow-hidden">
 										{project.imageUrl ? (
 											<img 
 												src={project.imageUrl} 
@@ -368,10 +368,10 @@ export default function ProjectsPage() {
 								</div>
 
 								{/* Bottom Half - Content */}
-								<div className="space-y-4">
+								<div className="space-y-3 sm:space-y-4">
 									{/* Title and User Count */}
 									<div>
-										<h3 className={`${titleFont.className} text-2xl font-bold text-gray-900 group-hover:text-blue-800 transition-colors duration-500`}>
+										<h3 className={`${titleFont.className} text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-blue-800 transition-colors duration-500`}>
 											{project.name}
 										</h3>
 										
@@ -428,14 +428,14 @@ export default function ProjectsPage() {
 									</div>
 
 									{/* Action Buttons */}
-									<div className="flex gap-3">
+									<div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
 										{/* Live Demo Button */}
 										{project.websiteUrl && project.name !== "Personal Portfolio" && (
 											<a
 												href={project.websiteUrl}
 												target="_blank"
 												rel="noopener noreferrer"
-												className="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors duration-200 text-center flex items-center justify-center gap-2"
+												className="flex-1 bg-blue-500 text-white px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-blue-600 transition-colors duration-200 text-center flex items-center justify-center gap-2"
 												onClick={(e) => e.stopPropagation()}
 											>
 												<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -451,7 +451,7 @@ export default function ProjectsPage() {
 												href={project.githubUrl}
 												target="_blank"
 												rel="noopener noreferrer"
-												className="flex-1 bg-gray-800 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-900 transition-colors duration-200 text-center flex items-center justify-center gap-2"
+												className="flex-1 bg-gray-800 text-white px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-900 transition-colors duration-200 text-center flex items-center justify-center gap-2"
 												onClick={(e) => e.stopPropagation()}
 											>
 												<svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -464,7 +464,7 @@ export default function ProjectsPage() {
 										{/* Read More Button */}
 										<button
 											onClick={() => openCaseStudy(project)}
-											className="flex-1 bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 px-4 py-2 rounded-lg text-sm font-medium hover:from-orange-200 hover:to-orange-300 transition-all duration-200 flex items-center justify-center gap-2"
+											className="flex-1 bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium hover:from-orange-200 hover:to-orange-300 transition-all duration-200 flex items-center justify-center gap-2"
 										>
 											<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 												<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
