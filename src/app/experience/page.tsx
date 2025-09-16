@@ -353,7 +353,7 @@ export default function ExperiencePage() {
 							<div 
 								key={experience.id}
 								id={`card-${experience.id}`}
-								className="relative bg-white/95 rounded-lg border border-gray-200/50 shadow-sm hover:shadow-lg transition-all duration-500 p-8 group cursor-pointer transform hover:-translate-y-2 hover:scale-105"
+								className="relative bg-white/95 rounded-lg border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 p-8 group cursor-pointer transform hover:-translate-y-2 hover:scale-105"
 								style={{
 									transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
 									transformOrigin: 'center center',
@@ -722,27 +722,42 @@ export default function ExperiencePage() {
 									</div>
 								)}
 
-								{/* Arrow Indicator - Right side */}
-								<div className="absolute right-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
-									<button
-										onClick={() => toggleCardView(experience.id)}
-										className="flex items-center justify-center w-12 h-12 bg-white/90 hover:bg-white border border-gray-200/60 hover:border-gray-300 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group/arrow"
-										title={isCompanyView ? 'View My Role' : 'Learn About Company'}
+								{/* Scribbled Arrow - Always visible */}
+								<div 
+									className={`absolute right-4 top-1/2 transform -translate-y-1/2 transition-all duration-500 cursor-pointer z-50 ${
+										isCompanyView 
+											? 'opacity-100' 
+											: 'opacity-40 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0'
+									}`}
+									onClick={(e) => {
+										e.preventDefault();
+										e.stopPropagation();
+										toggleCardView(experience.id);
+									}}
+									title={isCompanyView ? 'View My Role' : 'Learn About Company'}
+								>
+									<svg 
+										width="40" 
+										height="40" 
+										viewBox="0 0 24 24" 
+										className="text-yellow-400"
 									>
-										<svg 
-											width="20" 
-											height="20" 
-											viewBox="0 0 24 24" 
-											fill="none" 
+										<path 
+											d="M4 12 L18 12 M14 8 L18 12 L14 16" 
 											stroke="currentColor" 
-											strokeWidth="2"
-											className={`text-gray-600 group-hover/arrow:text-blue-600 transition-colors duration-300 ${
-												isCompanyView ? 'rotate-180' : ''
+											strokeWidth="3" 
+											fill="none" 
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											className={`scribble-arrow transition-transform duration-300 ${
+												isCompanyView ? 'scale-x-[-1]' : ''
 											}`}
-										>
-											<path d="M9 18l6-6-6-6"/>
-										</svg>
-									</button>
+											style={{
+												strokeDasharray: '30',
+												strokeDashoffset: isCompanyView ? '0' : '30'
+											}}
+										/>
+									</svg>
 								</div>
 
 

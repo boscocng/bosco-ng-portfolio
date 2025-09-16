@@ -47,6 +47,25 @@ p {
   }
 }
 
+/* Hand-drawn arrow animation */
+@keyframes draw-arrow {
+  0% {
+    stroke-dashoffset: 30;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.group:hover .scribble-arrow {
+  animation: draw-arrow 1.5s ease-in-out forwards;
+}
+
+/* Reset animation when not in company view */
+.group:hover .scribble-arrow:not([style*="strokeDashoffset: 0"]) {
+  animation: draw-arrow 1.5s ease-in-out forwards;
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 0.8s ease-out forwards;
   opacity: 0;

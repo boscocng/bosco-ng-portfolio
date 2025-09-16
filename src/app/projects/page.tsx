@@ -217,7 +217,7 @@ export default function ProjectsPage() {
 
 	return (
 		<main className="min-h-screen notebook-paper">
-			<div className="mx-auto max-w-6xl px-8 py-12 relative">
+			<div className="mx-auto max-w-7xl px-8 py-12 relative">
 				{/* Header */}
 				<div className="mb-12 text-center">
 					<h1 className={`${headline.className} text-6xl sm:text-7xl font-bold text-gray-900 mb-4 relative inline-block`}>
@@ -265,7 +265,7 @@ export default function ProjectsPage() {
 				</div>
 
 				{/* Projects Grid */}
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 					{filteredProjects.map((project, index) => {
 						// Create slight random rotations for each card to look hand-placed
 						const randomRotations = [0, 0.5, -0.3, 0.6, -0.5, 0.2];
@@ -274,7 +274,7 @@ export default function ProjectsPage() {
 	return (
 							<div
 								key={project.id}
-								className="group relative bg-white/95 rounded-lg border border-gray-200/50 shadow-sm hover:shadow-lg transition-all duration-500 p-6 cursor-pointer transform hover:-translate-y-2 hover:scale-105"
+								className="group relative bg-white/95 rounded-lg border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 p-6 cursor-pointer transform hover:-translate-y-2 hover:scale-105"
 								style={{
 									transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
 									transformOrigin: 'center center',
@@ -311,7 +311,7 @@ export default function ProjectsPage() {
 										{/* Polaroid Frame */}
 										<div className="bg-white p-4 pb-8 shadow-lg transform rotate-1 hover:rotate-0 transition-transform duration-300">
 											{/* Image */}
-											<div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 rounded-sm overflow-hidden">
+											<div className="w-full h-56 bg-gradient-to-br from-gray-100 to-gray-200 rounded-sm overflow-hidden">
 												{project.imageUrl ? (
 													<img 
 														src={project.imageUrl} 
@@ -363,9 +363,8 @@ export default function ProjectsPage() {
 										{project.briefDescription}
 									</p>
 
-									{/* Technologies Used */}
+									{/* Technologies */}
 									<div className="mb-4">
-										<h4 className={`${bodyHand.className} text-sm font-semibold text-gray-600 mb-2`}>Technologies Used</h4>
 										<div className="flex flex-wrap gap-2">
 											{project.technologies.slice(0, 4).map((tech, techIndex) => (
 												<span
