@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <style>
+      @font-face {
+        font-family: 'Caveat';
+        font-style: normal;
+        font-weight: 700;
+        src: url('https://fonts.gstatic.com/s/caveat/v18/WnznHAc5bAfYB2QRah7pcpNn.woff2') format('woff2');
+      }
+      .txt {
+        font-family: 'Caveat', cursive;
+        font-weight: 700;
+        font-size: 150px;
+        fill: #111827;
+        letter-spacing: 2px;
+        paint-order: stroke fill;
+        stroke: #0b1220;
+        stroke-width: 2;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <!-- Handwritten "BN" without background -->
+  <text x="50%" y="58%" text-anchor="middle" dominant-baseline="middle" class="txt" transform="rotate(-2 128 128)">BN</text>
+</svg>
+

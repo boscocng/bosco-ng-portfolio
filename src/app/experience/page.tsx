@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Caveat, Patrick_Hand } from "next/font/google";
 
 const headline = Caveat({
@@ -154,6 +154,11 @@ export default function ExperiencePage() {
 	const [experiences] = useState<Experience[]>(initialExperiences);
 	const [cardViews, setCardViews] = useState<{ [key: number]: 'role' | 'company' }>({});
 	const [activeCard, setActiveCard] = useState<number>(1);
+	const [pickedCardId, setPickedCardId] = useState<number | null>(null);
+	const cardRefs = useRef<Map<number, HTMLElement>>(new Map());
+	const visibilityRatiosRef = useRef<Record<number, number>>({});
+	const activeCardRef = useRef<number>(1);
+	const pickedCardIdRef = useRef<number | null>(null);
 
 
 	const toggleCardView = (id: number) => {
@@ -174,25 +179,59 @@ export default function ExperiencePage() {
 		}
 	};
 
-	// Update active card based on scroll position
-	React.useEffect(() => {
-		const handleScroll = () => {
-			const cards = experiences.map(exp => document.getElementById(`card-${exp.id}`)).filter(Boolean);
-			const scrollPosition = window.scrollY + window.innerHeight / 2;
+	// Keep refs in sync with state to avoid adding them to effect deps
+	React.useEffect(() => { activeCardRef.current = activeCard; }, [activeCard]);
+	React.useEffect(() => { pickedCardIdRef.current = pickedCardId; }, [pickedCardId]);
 
-			for (let i = cards.length - 1; i >= 0; i--) {
-				const card = cards[i];
-				if (card && card.offsetTop <= scrollPosition) {
-					const cardId = parseInt(card.id.replace('card-', ''));
-					setActiveCard(cardId);
-					break;
+	// Efficiently track which card is most visible using IntersectionObserver (fixed deps)
+	React.useEffect(() => {
+		if (!('IntersectionObserver' in window)) return; // Fallback: keep current activeCard
+
+		const observer = new IntersectionObserver((entries) => {
+			let needsUpdate = false;
+			for (const entry of entries) {
+				const target = entry.target as HTMLElement;
+				const id = parseInt(target.id.replace('card-', ''));
+				visibilityRatiosRef.current[id] = entry.intersectionRatio;
+				needsUpdate = true;
+			}
+			if (!needsUpdate) return;
+			// Choose the card with highest intersection ratio
+			let bestId = activeCardRef.current;
+			let bestRatio = -1;
+			for (const exp of initialExperiences) {
+				const ratio = visibilityRatiosRef.current[exp.id] ?? 0;
+				if (ratio > bestRatio) {
+					bestRatio = ratio;
+					bestId = exp.id;
 				}
 			}
-		};
+			if (bestId !== activeCardRef.current) {
+				// Defer state update to next frame to avoid layout thrash
+				requestAnimationFrame(() => setActiveCard(bestId));
+			}
+			// If the currently picked card is not visible anymore, drop it
+			if (pickedCardIdRef.current != null) {
+				const visible = (visibilityRatiosRef.current[pickedCardIdRef.current] ?? 0) > 0.02;
+				if (!visible) {
+					requestAnimationFrame(() => setPickedCardId(null));
+				}
+			}
+		}, {
+			root: null,
+			// Focus on roughly the center viewport area
+			rootMargin: '-30% 0px -30% 0px',
+			threshold: Array.from({ length: 11 }, (_, i) => i / 10),
+		});
 
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
-	}, [experiences]);
+		// Observe all current cards (query DOM to avoid timing with ref population)
+		for (const exp of initialExperiences) {
+			const el = document.getElementById(`card-${exp.id}`);
+			if (el) observer.observe(el);
+		}
+
+		return () => observer.disconnect();
+	}, []);
 
 
 	return (
@@ -328,22 +367,41 @@ export default function ExperiencePage() {
 						const randomRotations = [0, 0.5, -0.3, 0.6, -0.5, 0.2];
 						const baseRotation = randomRotations[index % randomRotations.length];
 						
-	return (
-							<div 
+				return (
+						<div 
 								key={experience.id}
 								id={`card-${experience.id}`}
-								className="relative bg-white/95 rounded-lg border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 p-8 group cursor-pointer transform hover:-translate-y-2 hover:scale-105"
-								style={{
-									transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+							className={`relative bg-white/95 rounded-lg border border-gray-200/50 p-8 group cursor-pointer ${pickedCardId === experience.id ? 'shadow-2xl' : 'shadow-lg hover:shadow-xl'}`}
+							style={{
+								transition: 'transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1)',
 									transformOrigin: 'center center',
-									transform: `rotate(${baseRotation}deg)`,
-									'--hover-rotation': `${baseRotation + 1}deg`
+								transform: `${pickedCardId === experience.id ? `rotate(${baseRotation + 0.6}deg) translate3d(0,-12px,0) scale3d(1.06, 1.06, 1)` : `rotate(${baseRotation}deg) translateZ(0) scale3d(1, 1, 1)`}`,
+								'--hover-rotation': `${baseRotation + 1}deg`,
+								willChange: 'transform',
+								backfaceVisibility: 'hidden',
+								contain: 'layout style paint',
+								zIndex: pickedCardId === experience.id ? 30 : 'auto'
 								} as React.CSSProperties}
-								onMouseEnter={(e) => {
-									e.currentTarget.style.transform = `rotate(${baseRotation + 0.5}deg) translateY(-8px) scale(1.05)`;
-								}}
+							ref={(el) => {
+								if (el) {
+									cardRefs.current.set(experience.id, el);
+								} else {
+									cardRefs.current.delete(experience.id);
+								}
+							}}
+							onClick={(e) => {
+								// Ignore clicks on links and on the next-card arrow
+								const target = e.target as HTMLElement;
+								if (target.closest('a') || target.closest('[data-no-card-pick]')) return;
+								setPickedCardId(prev => (prev === experience.id ? null : experience.id));
+							}}
+							onMouseEnter={(e) => {
+								if (pickedCardId === experience.id) return;
+								e.currentTarget.style.transform = `rotate(${baseRotation}deg) translate3d(0,-3px,0)`;
+							}}
 								onMouseLeave={(e) => {
-									e.currentTarget.style.transform = `rotate(${baseRotation}deg)`;
+								if (pickedCardId === experience.id) return;
+								e.currentTarget.style.transform = `rotate(${baseRotation}deg) translateZ(0)`;
 								}}
 							>
 								{/* Notebook margin line */}
@@ -696,12 +754,13 @@ export default function ExperiencePage() {
 								)}
 
 								{/* Hand-drawn Arrow - Subtle and themed */}
-								<div 
+						<div 
 									className={`absolute right-6 top-1/2 transform -translate-y-1/2 transition-all duration-500 cursor-pointer z-50 pointer-events-auto ${
 										isCompanyView 
 											? 'opacity-100' 
 											: 'opacity-50 group-hover:opacity-100 translate-x-3 group-hover:translate-x-0'
-									}`}
+							}`}
+							data-no-card-pick
 									onClick={(e) => {
 										e.preventDefault();
 										e.stopPropagation();
