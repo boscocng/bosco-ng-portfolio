@@ -643,21 +643,21 @@ export default function ExperiencePage() {
 														</h2>
 													)}
 													
-													{/* Company Details - Location and Industry */}
-													<div className="flex flex-wrap items-center gap-4 mb-2">
-														<div className="flex items-center gap-2">
-															<span className="text-orange-500 text-sm">🏢</span>
-															<span className={`${bodyHand.className} text-lg text-gray-700 group-hover:text-gray-800 transition-colors duration-500`}>
-																{experience.companyInfo.industry}
-															</span>
-														</div>
-														<div className="flex items-center gap-2">
-															<span className="text-orange-500 text-sm">📍</span>
-															<span className={`${bodyHand.className} text-lg text-gray-700 group-hover:text-gray-800 transition-colors duration-500`}>
-																{experience.companyInfo.location}
-															</span>
-														</div>
-													</div>
+									{/* Company Details - Location and Industry */}
+									<div className="flex flex-wrap items-center gap-4 mb-2">
+										<div className="flex items-center gap-2">
+											<div className="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
+											<span className={`${bodyHand.className} text-lg text-gray-700 group-hover:text-gray-800 transition-colors duration-500`}>
+												{experience.companyInfo.industry}
+											</span>
+										</div>
+										<div className="flex items-center gap-2">
+											<div className="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
+											<span className={`${bodyHand.className} text-lg text-gray-700 group-hover:text-gray-800 transition-colors duration-500`}>
+												{experience.companyInfo.location}
+											</span>
+										</div>
+									</div>
 												</div>
 											</div>
 											<div className={`${bodyHand.className} text-lg text-gray-600 bg-orange-100/50 px-4 py-2 rounded-full group-hover:bg-orange-200/70 group-hover:text-orange-700 group-hover:scale-110 transition-all duration-500`}>
@@ -668,7 +668,7 @@ export default function ExperiencePage() {
 										{/* Company Description */}
 										<div className="mb-6">
 											<h3 className={`${bodyHand.className} text-xl font-semibold text-gray-800 mb-3 group-hover:text-orange-700 transition-colors duration-500`}>
-												About {experience.company} <span className="text-orange-500 text-lg">ℹ️</span>
+												About {experience.company}
 											</h3>
 											<p className={`${bodyHand.className} text-lg text-gray-700 leading-relaxed group-hover:text-gray-800 transition-colors duration-500`}>
 												{experience.companyInfo.description}
@@ -676,78 +676,24 @@ export default function ExperiencePage() {
 										</div>
 
 
-										{/* Key Facts - Enhanced Layout */}
+										{/* Key Facts - Clean Professional Layout */}
 										<div className="mb-6">
-											<h3 className={`${headline.className} text-2xl font-bold text-gray-800 mb-6 group-hover:text-emerald-700 transition-colors duration-500 flex items-center gap-3`}>
-												<span>Key Facts</span>
-												<span className="text-emerald-500 text-2xl">💡</span>
+											<h3 className={`${headline.className} text-2xl font-semibold text-gray-800 mb-4 group-hover:text-orange-700 transition-colors duration-500`}>
+												Key Facts
 											</h3>
 											
-											{/* Varied formatting for each key fact */}
-											<div className="space-y-4">
-												{experience.companyInfo.keyFacts.map((fact, factIndex) => {
-													// Different styles for each fact
-													const styles = [
-														{
-															container: 'bg-gradient-to-r from-blue-50 to-blue-100 border-l-4 border-blue-400 shadow-sm hover:shadow-md',
-															icon: 'bg-blue-500 text-white',
-															iconSymbol: '🏢',
-															text: 'text-blue-800 font-semibold'
-														},
-														{
-															container: 'bg-gradient-to-r from-orange-50 to-orange-100 border-l-4 border-orange-400 shadow-sm hover:shadow-md',
-															icon: 'bg-orange-500 text-white',
-															iconSymbol: '⭐',
-															text: 'text-orange-800 font-semibold'
-														},
-														{
-															container: 'bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-green-400 shadow-sm hover:shadow-md',
-															icon: 'bg-green-500 text-white',
-															iconSymbol: '🎯',
-															text: 'text-green-800 font-semibold'
-														},
-														{
-															container: 'bg-gradient-to-r from-purple-50 to-purple-100 border-l-4 border-purple-400 shadow-sm hover:shadow-md',
-															icon: 'bg-purple-500 text-white',
-															iconSymbol: '💡',
-															text: 'text-purple-800 font-semibold'
-														}
-													];
-													
-													const currentStyle = styles[factIndex % styles.length];
-													
-													return (
-														<div 
-															key={factIndex}
-															className={`group/fact relative p-4 rounded-r-lg transition-all duration-300 hover:scale-[1.01] hover:translate-x-1 ${currentStyle.container}`}
-															style={{
-																transitionDelay: `${factIndex * 100}ms`
-															}}
-														>
-															<div className="flex items-start gap-4">
-																{/* Icon with emoji */}
-																<div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${currentStyle.icon} shadow-md group-hover/fact:scale-105 transition-transform duration-300`}>
-																	<span className="text-lg">{currentStyle.iconSymbol}</span>
-																</div>
-																
-																{/* Content */}
-																<div className="flex-1">
-																	<p className={`${bodyHand.className} ${currentStyle.text} text-base leading-relaxed group-hover/fact:scale-[1.02] transition-transform duration-300`}>
-																		{fact}
-																	</p>
-																</div>
-															</div>
-															
-															{/* Subtle bottom accent */}
-															<div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-current to-transparent opacity-0 group-hover/fact:opacity-30 transition-opacity duration-500"></div>
-														</div>
-													);
-												})}
-											</div>
-											
-											{/* Bottom accent line */}
-											<div className="mt-6 flex justify-center">
-												<div className="w-24 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent rounded-full opacity-60"></div>
+											<div className="space-y-3">
+												{experience.companyInfo.keyFacts.map((fact, factIndex) => (
+													<div 
+														key={factIndex}
+														className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors duration-200"
+													>
+														<div className="flex-shrink-0 w-2 h-2 bg-orange-400 rounded-full mt-2"></div>
+														<p className={`${bodyHand.className} text-gray-700 text-base leading-relaxed`}>
+															{fact}
+														</p>
+													</div>
+												))}
 											</div>
 										</div>
 									</div>

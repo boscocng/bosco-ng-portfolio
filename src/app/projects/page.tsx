@@ -177,7 +177,7 @@ const initialProjects: Project[] = [
 		featured: true,
 		users: undefined,
 		userMetric: undefined,
-		duration: "deployment in 1 month",
+		duration: "set to deploy 21/11/2025",
 		caseStudy: {
 			overview: "The COMPSA LLM Agent is an intelligent AI assistant designed to help Queen's Computing students navigate academic requirements, course information, and student services. As part of COMPSA's digital transformation, this agent provides 24/7 support for common student queries and academic guidance.",
 			challenge: "Students frequently have questions about course requirements, academic policies, and student services that require immediate answers. The existing support system was limited to office hours and email responses, creating delays in student assistance.",
@@ -202,6 +202,41 @@ const initialProjects: Project[] = [
 				"User experience design is crucial for AI interactions",
 				"Integration with existing systems requires careful planning",
 				"Continuous monitoring and improvement is essential for AI systems"
+			]
+		}
+	},
+	{
+		id: 6,
+		name: "COMPSA Mobile App",
+		description: "A cross-platform mobile app for Queen's Computing Students' Association to bring events, resources, and student tools to iOS and Android.",
+		briefDescription: "In-progress React Native app delivering COMPSA events, resources, and student tools to mobile",
+		technologies: ["React Native", "Expo", "TypeScript", "React Navigation", "NativeWind"],
+		websiteUrl: undefined,
+		githubUrl: undefined,
+		imageUrl: "/images/mobile.png",
+		status: "in-progress",
+		featured: true,
+		users: undefined,
+		userMetric: undefined,
+		duration: "set to deploy 21/11/2025",
+		caseStudy: {
+			overview: "Building a mobile companion to COMPSA's platform so students can quickly access events, academic resources, and announcements with push notifications.",
+			challenge: "Students primarily use mobile; we need a fast, offline-friendly, accessible app that mirrors web features without duplicating backend logic.",
+			solution: "React Native (Expo) with TypeScript, shared API contracts, and React Query-style patterns for caching. Uses NativeWind for consistent styling.",
+			technologies: ["React Native", "Expo", "TypeScript", "React Navigation", "NativeWind", "REST APIs"],
+			keyFeatures: [
+				"Live events feed with RSVP",
+				"Academic resources and quick links",
+				"Announcements and push notifications",
+				"Offline-friendly caching"
+			],
+			results: [
+				"In progress — internal test flight soon",
+				"Targets iOS and Android via Expo"
+			],
+			lessonsLearned: [
+				"Share types between web and mobile for safety",
+				"Design for small screens first"
 			]
 		}
 	},
