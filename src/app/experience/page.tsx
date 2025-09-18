@@ -548,28 +548,6 @@ export default function ExperiencePage() {
 												</div>
 											</div>
 
-											{/* Live Site Link */}
-											{experience.demoUrl && (
-												<div>
-													<h3 className={`${headline.className} text-2xl font-semibold text-gray-800 mb-3 flex items-center gap-2`}>
-														<span>Live Site</span>
-														<svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-														</svg>
-													</h3>
-													<a
-														href={experience.demoUrl}
-														target="_blank"
-														rel="noopener noreferrer"
-														className="inline-flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200 shadow-sm hover:shadow-md"
-													>
-														<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-															<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-														</svg>
-														<span className={`${bodyHand.className} text-sm font-medium`}>Visit Live Site</span>
-													</a>
-												</div>
-											)}
 										</div>
 									</div>
 								)}
