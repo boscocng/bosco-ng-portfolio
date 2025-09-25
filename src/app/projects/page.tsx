@@ -89,8 +89,9 @@ const initialProjects: Project[] = [
 		id: 2,
 		name: "QWEB's Booking Platform",
 		description: "A comprehensive booking platform for Queen's Computing students to reserve private breakout rooms in the Faculty's Computer Lab. Built with modern web technologies and designed for seamless user experience.",
-		briefDescription: "Production-ready booking platform for 600+ computing students with private breakout room reservations",
+		briefDescription: "Production-ready booking platform for 600+ active computing students with private breakout room reservations",
 		technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Docker", "Supabase"],
+		websiteUrl: "https://calendar.qweb.dev/",
 		githubUrl: "https://github.com/qweb/booking-platform",
 		imageUrl: "/images/qweb_boking.jpg.png",
 		status: "completed",
@@ -99,29 +100,26 @@ const initialProjects: Project[] = [
 		userMetric: "active users",
 		duration: "4 months",
 		caseStudy: {
-			overview: "The QWEB Booking Platform was developed to solve the problem of students struggling to find and reserve study spaces in the Faculty of Computing. With 600+ students competing for limited breakout rooms, we needed a fair, efficient, and user-friendly solution.",
-			challenge: "Students were manually checking room availability, leading to conflicts and inefficient space utilization. The existing system lacked real-time updates, fair scheduling, and mobile accessibility.",
-			solution: "Built a full-stack web application with real-time availability tracking, one-hour booking slots for fair access, and a responsive design that works seamlessly on all devices.",
-			technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Docker", "Supabase", "Real-time WebSockets"],
+			overview: "The QWeb Scheduling Tool was developed to solve coordination challenges within Queen's University's premier web development club. With 600+ active members across multiple projects, scheduling meetings and coordinating team activities was becoming increasingly complex.",
+			challenge: "Team members were struggling with scheduling conflicts, time zone differences, and inefficient meeting coordination. The existing process relied heavily on manual scheduling and multiple communication channels, leading to missed meetings and reduced productivity.",
+			solution: "Built a comprehensive scheduling platform with automated availability detection, time zone handling, and seamless integration with existing workflows. The system features secure authentication, RESTful APIs, and a responsive UI that works across all devices.",
+			technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Docker", "Supabase", "RESTful APIs"],
 			keyFeatures: [
-				"Real-time room availability tracking",
-				"One-hour booking slots for fair access",
-				"Mobile-responsive design",
-				"User authentication with Queen's ID integration",
-				"Admin dashboard for room management",
-				"Email notifications for booking confirmations"
+				"Automated availability detection and conflict resolution",
+				"Time zone handling for global team coordination",
+				"Secure authentication with Queen's ID integration",
+				"RESTful API architecture for scalability",
+				"Responsive design for mobile and desktop",
+				"Integration with existing team communication tools"
 			],
 			results: [
-				"Served 600+ computing students",
-				"Reduced room booking conflicts by 85%",
-				"Improved space utilization efficiency by 60%",
-				"Received 4.8/5 user satisfaction rating"
+				"Streamlined scheduling for 100+ team members",
+				"Delivered production-ready platform with zero critical bugs"
 			],
 			lessonsLearned: [
-				"Real-time data synchronization is crucial for booking systems",
-				"Fair access algorithms prevent system abuse",
-				"Mobile-first design is essential for student applications",
-				"User feedback drives iterative improvements"
+				"Agile development methodologies can be crucial for team coordination",
+				"Automated conflict resolution saves significant time",
+				"Clear communication protocols prevent development bottlenecks"
 			]
 		}
 	},
