@@ -126,8 +126,8 @@ const initialProjects: Project[] = [
 	{
 		id: 3,
 		name: "COMPSA Website & Digital Platform",
-		description: "A comprehensive digital platform for Queen's Computing Students' Association featuring live events calendar, academic resources, hiring opportunities, and official merchandise store.",
-		briefDescription: "Full-stack digital platform with live events calendar, academic resources, hiring pages, and merchandise store",
+		description: "A comprehensive digital platform for Queen's Computing Students' Association featuring room booking, in-depth FAQ about the Queen's Computing program, announcement hub, and academics page.",
+		briefDescription: "Full-stack digital platform with room booking, comprehensive FAQ, announcement hub, and academics resources",
 		technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Docker", "Supabase", "Stripe API"],
 		websiteUrl: "https://compsa.ca/",
 		githubUrl: "https://github.com/compsa/website",
@@ -136,30 +136,32 @@ const initialProjects: Project[] = [
 		featured: false,
 		users: 10000,
 		userMetric: "visits last month",
-		duration: "6 months",
+		duration: "1 month",
 		caseStudy: {
-			overview: "As Director of Information Technology for COMPSA, I led the development of a comprehensive digital platform to serve 1,800+ computing students. The platform needed to centralize all student services and provide modern, accessible tools for academic and professional development.",
-			challenge: "COMPSA needed a unified digital presence that could handle multiple services: event management, academic resources, job postings, and e-commerce. The existing system was fragmented and difficult to maintain.",
-			solution: "Built a modern full-stack platform using Next.js and TypeScript, with integrated services for events, resources, hiring, and merchandise. Implemented real-time updates and responsive design.",
+			overview: "As Director of Information Technology for COMPSA, I led the development of a comprehensive digital platform to serve 1,800+ computing students. Built in just one month, the platform centralizes essential student services including room booking, academic resources, and program information.",
+			challenge: "COMPSA needed a unified digital platform that could handle multiple critical services: room booking for study spaces, comprehensive FAQ system for computing program questions, centralized announcements, and academic resources. The existing system was fragmented and students struggled to find information quickly.",
+			solution: "Built a modern full-stack platform using Next.js and TypeScript in one month, with integrated services for room booking, in-depth FAQ system covering Queen's Computing program questions, announcement hub for important updates, and dedicated academics page. Implemented real-time updates and responsive design.",
 			technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Docker", "Supabase", "Stripe API", "Real-time WebSockets"],
 			keyFeatures: [
-				"Live events calendar with RSVP functionality",
-				"Academic resources and study materials",
-				"Job posting and application system",
-				"Official merchandise store with Stripe integration",
+				"Room booking system for study spaces",
+				"In-depth FAQ with questions about the Queen's Computing program",
+				"Announcement hub for important student updates",
+				"Academics page with resources and information",
 				"Admin dashboard for content management",
 				"Mobile-responsive design"
 			],
 			results: [
 				"10,000+ visits last month",
+				"Completed in 1 month with all core features",
 				"Centralized all student services in one platform",
-				"Improved student engagement by 40%",
+				"Improved student engagement and information access",
 				"Streamlined administrative processes"
 			],
 			lessonsLearned: [
-				"User research drives feature prioritization",
-				"Modular architecture enables rapid development",
-				"Payment integration requires careful security planning",
+				"Rapid development requires clear feature prioritization",
+				"Modular architecture enables fast iteration",
+				"User-focused features drive adoption",
+				"Comprehensive FAQ systems reduce support burden",
 				"Admin tools are crucial for content management"
 			]
 		}
@@ -206,35 +208,41 @@ const initialProjects: Project[] = [
 	{
 		id: 6,
 		name: "COMPSA Mobile App",
-		description: "A cross-platform mobile app for Queen's Computing Students' Association to bring events, resources, and student tools to iOS and Android.",
-		briefDescription: "In-progress React Native app delivering COMPSA events, resources, and student tools to mobile",
+		description: "A cross-platform mobile app for Queen's Computing Students' Association featuring room booking, in-depth FAQ about the Queen's Computing program, announcement hub, and academics page.",
+		briefDescription: "Completed React Native app with room booking, comprehensive FAQ, announcement hub, and academics resources",
 		technologies: ["React Native", "Expo", "TypeScript", "React Navigation", "NativeWind"],
 		websiteUrl: undefined,
-		githubUrl: undefined,
+		githubUrl: "https://github.com/compsa-tech-team/COMPSA-App",
 		imageUrl: "/images/mobile.png",
-		status: "in-progress",
+		status: "completed",
 		featured: true,
 		users: undefined,
 		userMetric: undefined,
-		duration: "set to deploy 21/11/2025",
+		duration: "1 month",
 		caseStudy: {
-			overview: "Building a mobile companion to COMPSA's platform so students can quickly access events, academic resources, and announcements with push notifications.",
-			challenge: "Students primarily use mobile; we need a fast, offline-friendly, accessible app that mirrors web features without duplicating backend logic.",
-			solution: "React Native (Expo) with TypeScript, shared API contracts, and React Query-style patterns for caching. Uses NativeWind for consistent styling.",
+			overview: "Built a mobile companion to COMPSA's platform in one month, providing students with quick access to room booking, comprehensive FAQ about the Queen's Computing program, centralized announcements, and academic resources on iOS and Android.",
+			challenge: "Students primarily use mobile devices and needed a fast, accessible app that provides essential services including room booking, program information, announcements, and academic resources. The app needed to mirror web features efficiently without duplicating backend logic.",
+			solution: "Built a React Native (Expo) app with TypeScript in one month, featuring room booking functionality, in-depth FAQ system covering Queen's Computing program questions, announcement hub for important updates, and dedicated academics page. Used shared API contracts and React Query-style patterns for caching with NativeWind for consistent styling.",
 			technologies: ["React Native", "Expo", "TypeScript", "React Navigation", "NativeWind", "REST APIs"],
 			keyFeatures: [
-				"Live events feed with RSVP",
-				"Academic resources and quick links",
-				"Announcements and push notifications",
-				"Offline-friendly caching"
+				"Room booking system for study spaces",
+				"In-depth FAQ with questions about the Queen's Computing program",
+				"Announcement hub for important student updates",
+				"Academics page with resources and information",
+				"Offline-friendly caching",
+				"Cross-platform support for iOS and Android"
 			],
 			results: [
-				"In progress — internal test flight soon",
-				"Targets iOS and Android via Expo"
+				"Completed in 1 month with all core features",
+				"Successfully deployed for iOS and Android via Expo",
+				"Provides essential student services on mobile",
+				"Improved accessibility to COMPSA resources"
 			],
 			lessonsLearned: [
-				"Share types between web and mobile for safety",
-				"Design for small screens first"
+				"Rapid mobile development requires clear feature prioritization",
+				"Share types between web and mobile for consistency and safety",
+				"Design for small screens first for better mobile UX",
+				"Offline caching is crucial for mobile app reliability"
 			]
 		}
 	},
@@ -478,8 +486,8 @@ export default function ProjectsPage() {
 											</a>
 										)}
 
-										{/* View Code Button for Personal Portfolio */}
-										{project.githubUrl && project.name === "Personal Portfolio" && (
+										{/* View Code Button */}
+										{project.githubUrl && (project.name === "Personal Portfolio" || project.name === "COMPSA Mobile App") && (
 											<a
 												href={project.githubUrl}
 												target="_blank"
