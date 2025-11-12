@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <>
+    <div className="min-h-screen homepage-gradient">
       <div className="h-2" />
       <Hero />
-    </>
+    </div>
   );
 }

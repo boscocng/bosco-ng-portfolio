@@ -111,6 +111,9 @@ export default function Hero() {
 			
 			{/* Enhanced background with subtle floating elements */}
 			<div className="absolute inset-0 pointer-events-none">
+				{/* Subtle gradient overlay for depth */}
+				<div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-slate-100/20" />
+				<div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-blue-100/10" />
 				{/* Floating paper scraps */}
 				<div className="absolute top-20 right-20 w-16 h-16 opacity-5 animate-float-x">
 					<svg viewBox="0 0 64 64" fill="none" className="w-full h-full">

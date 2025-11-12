@@ -375,3 +375,33 @@ p {
 .group:hover .handwritten-arrow-squiggle {
   animation-play-state: running;
 }
+
+/* Homepage gradient enhancements */
+.homepage-gradient {
+  background: linear-gradient(135deg, 
+    rgb(248 250 252) 0%, 
+    rgb(255 255 255) 25%, 
+    rgb(255 255 255) 75%, 
+    rgb(239 246 255 / 0.3) 100%);
+}
+
+/* Responsive gradient adjustments */
+@media (max-width: 640px) {
+  .homepage-gradient {
+    background: linear-gradient(135deg, 
+      rgb(248 250 252) 0%, 
+      rgb(255 255 255) 30%, 
+      rgb(255 255 255) 70%, 
+      rgb(239 246 255 / 0.2) 100%);
+  }
+}
+
+@media (min-width: 1024px) {
+  .homepage-gradient {
+    background: linear-gradient(135deg, 
+      rgb(248 250 252) 0%, 
+      rgb(255 255 255) 20%, 
+      rgb(255 255 255) 80%, 
+      rgb(239 246 255 / 0.4) 100%);
+  }
+}
