@@ -42,7 +42,7 @@ export default function ResumePage() {
 					{/* PDF Viewer */}
 					<div className="w-full">
 						<iframe
-							src="/images/Bosco Ng Resume.pdf#toolbar=1&navpanes=1&scrollbar=1"
+							src="/api/resume#toolbar=1&navpanes=1&scrollbar=1"
 							className="w-full h-[600px] sm:h-[700px] lg:h-[800px] border border-gray-300 rounded-lg shadow-inner"
 							title="Bosco Ng Resume"
 						/>
