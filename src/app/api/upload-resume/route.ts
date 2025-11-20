@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 
 const COOKIE_NAME = "bosco_admin_auth";
+const HARD_CODED_PASSWORD = "ChrisChester20$"; // temporary fallback password
 
 export async function POST(req: Request) {
   try {
@@ -13,7 +14,7 @@ export async function POST(req: Request) {
   const form = await req.formData();
   const pwRaw = form.get("password");
   const pw = typeof pwRaw === "string" ? pwRaw : null;
-    const envPw = process.env.ADMIN_PASSWORD || null;
+  const envPw = process.env.ADMIN_PASSWORD || HARD_CODED_PASSWORD;
 
     if (!hasCookie) {
       if (!envPw || pw !== envPw) {
