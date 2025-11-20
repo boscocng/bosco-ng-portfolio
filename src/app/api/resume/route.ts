@@ -1,18 +1,23 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import os from "os";
 
 export async function GET() {
   try {
+    // Prefer resume in writable temp dir (serverless), then repo uploads, then public images
+    const tmpUploads = path.join(os.tmpdir(), "bosco-resume-uploads", "resume.pdf");
     const uploaded = path.join(process.cwd(), "uploads", "resume.pdf");
-    let servePath = "";
-    if (fs.existsSync(uploaded)) {
-      servePath = uploaded;
-    } else {
-      servePath = path.join(process.cwd(), "public", "images", "Bosco Ng Resume.pdf");
-    }
+    const publicFallback = path.join(process.cwd(), "public", "images", "Bosco Ng Resume.pdf");
 
-    if (!fs.existsSync(servePath)) {
+    let servePath = "";
+    if (fs.existsSync(tmpUploads)) {
+      servePath = tmpUploads;
+    } else if (fs.existsSync(uploaded)) {
+      servePath = uploaded;
+    } else if (fs.existsSync(publicFallback)) {
+      servePath = publicFallback;
+    } else {
       return NextResponse.json({ error: "Resume not found" }, { status: 404 });
     }
 

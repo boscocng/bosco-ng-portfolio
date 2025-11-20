@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import os from "os";
 
 const COOKIE_NAME = "bosco_admin_auth";
 const HARD_CODED_PASSWORD = "ChrisChester20$"; // temporary fallback password
@@ -31,9 +32,20 @@ export async function POST(req: Request) {
 
     const buffer = Buffer.from(await file.arrayBuffer());
 
-    // Save under ./uploads/resume.pdf relative to repo root
-    const uploadsDir = path.resolve(process.cwd(), "uploads");
-    if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
+    // Save under a writable temp directory on serverless platforms (e.g. Vercel uses /tmp)
+    // This is ephemeral storage — consider S3 for persistence.
+    const tmpBase = os.tmpdir();
+    let uploadsDir = path.join(tmpBase, "bosco-resume-uploads");
+    if (!fs.existsSync(uploadsDir)) {
+      try {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+      } catch (mkdirErr) {
+        // Fallback to project uploads folder (useful for local dev)
+        const fallback = path.resolve(process.cwd(), "uploads");
+        if (!fs.existsSync(fallback)) fs.mkdirSync(fallback, { recursive: true });
+        uploadsDir = fallback;
+      }
+    }
     const outPath = path.join(uploadsDir, "resume.pdf");
     fs.writeFileSync(outPath, buffer);
 
