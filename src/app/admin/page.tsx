@@ -2,6 +2,15 @@
 
 import React, { useState, useRef } from "react";
 
+function getErrorMessage(err: unknown): string {
+  if (err instanceof Error) return err.message;
+  try {
+    return String(err);
+  } catch {
+    return "Unknown error";
+  }
+}
+
 export default function AdminPage() {
   const [password, setPassword] = useState("");
   const [authed, setAuthed] = useState(false);
@@ -25,8 +34,8 @@ export default function AdminPage() {
         const json = await res.json().catch(() => null);
         setStatus((json && json.error) || `Auth failed (${res.status})`);
       }
-    } catch (err: any) {
-      setStatus(err?.message || String(err));
+    } catch (err: unknown) {
+      setStatus(getErrorMessage(err));
     }
   }
 
@@ -36,7 +45,7 @@ export default function AdminPage() {
     if (!file) {
       try {
         fileInputRef.current?.click();
-      } catch (err) {
+      } catch {
         // ignore
       }
       setStatus("Please choose a PDF file to upload.");
@@ -61,21 +70,21 @@ export default function AdminPage() {
         try {
           // open public site
           window.open(`https://boscong.dev/resume?cb=${ts}`, "_blank");
-        } catch (e) {
+        } catch {
           // ignore in server-side rendering
         }
         try {
           // open local dev page too
           window.open(`/resume?cb=${ts}`, "_blank");
-        } catch (e) {
+        } catch {
           // ignore
         }
       } else {
-        const json = await res.json().catch(() => null);
-        setStatus((json && json.error) || `Upload failed (${res.status})`);
+        const json = (await res.json().catch(() => null)) as { error?: string } | null;
+        setStatus(json?.error ?? `Upload failed (${res.status})`);
       }
-    } catch (err: any) {
-      setStatus(err?.message || String(err));
+    } catch (err: unknown) {
+      setStatus(getErrorMessage(err));
     }
   }
 

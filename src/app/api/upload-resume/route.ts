@@ -10,8 +10,9 @@ export async function POST(req: Request) {
     const cookieHeader = req.headers.get("cookie") || "";
     const hasCookie = cookieHeader.includes(`${COOKIE_NAME}=`);
 
-    const form = await req.formData();
-    const pw = form.get("password") as string | null;
+  const form = await req.formData();
+  const pwRaw = form.get("password");
+  const pw = typeof pwRaw === "string" ? pwRaw : null;
     const envPw = process.env.ADMIN_PASSWORD || null;
 
     if (!hasCookie) {
@@ -20,8 +21,10 @@ export async function POST(req: Request) {
       }
     }
 
-    const file = form.get("file") as any;
-    if (!file || typeof file.arrayBuffer !== "function") {
+  const fileRaw = form.get("file");
+  type FileLike = { arrayBuffer: () => Promise<ArrayBuffer> };
+  const file = fileRaw && typeof (fileRaw as FileLike).arrayBuffer === "function" ? (fileRaw as FileLike) : null;
+    if (!file) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
     }
 
@@ -34,7 +37,8 @@ export async function POST(req: Request) {
     fs.writeFileSync(outPath, buffer);
 
     return NextResponse.json({ ok: true });
-  } catch (err: any) {
-    return NextResponse.json({ error: err?.message || String(err) }, { status: 500 });
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

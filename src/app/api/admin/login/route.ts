@@ -5,8 +5,8 @@ const COOKIE_MAX_AGE = 60 * 60 * 24; // 1 day
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { password } = body || {};
+    const body = (await req.json()) as { password?: string } | null;
+    const { password } = body ?? {};
     const real = process.env.ADMIN_PASSWORD;
     if (!real) {
       return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
@@ -20,7 +20,8 @@ export async function POST(req: Request) {
     // Set an HttpOnly cookie to mark admin as logged in
     res.headers.set("Set-Cookie", `${COOKIE_NAME}=1; Path=/; HttpOnly; Max-Age=${COOKIE_MAX_AGE}; SameSite=Lax`);
     return res;
-  } catch (err: any) {
-    return NextResponse.json({ error: err?.message || String(err) }, { status: 500 });
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
