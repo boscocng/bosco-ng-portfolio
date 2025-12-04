@@ -1,28 +1,24 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import os from "os";
 
+// In production, serverless file systems are ephemeral, so we always serve
+// the bundled resume PDF from the public folder. To update your resume,
+// replace the file at public/images/Bosco Ng Resume.pdf and redeploy.
 export async function GET() {
   try {
-    // Prefer resume in writable temp dir (serverless), then repo uploads, then public images
-    const tmpUploads = path.join(os.tmpdir(), "bosco-resume-uploads", "resume.pdf");
-    const uploaded = path.join(process.cwd(), "uploads", "resume.pdf");
-    const publicFallback = path.join(process.cwd(), "public", "images", "Bosco Ng Resume.pdf");
+    const publicPath = path.join(
+      process.cwd(),
+      "public",
+      "images",
+      "Bosco Ng Resume.pdf"
+    );
 
-    let servePath = "";
-    if (fs.existsSync(tmpUploads)) {
-      servePath = tmpUploads;
-    } else if (fs.existsSync(uploaded)) {
-      servePath = uploaded;
-    } else if (fs.existsSync(publicFallback)) {
-      servePath = publicFallback;
-    } else {
+    if (!fs.existsSync(publicPath)) {
       return NextResponse.json({ error: "Resume not found" }, { status: 404 });
     }
 
-    const file = fs.readFileSync(servePath);
-    // Add cache control to avoid serving stale PDF from browser cache or CDN.
+    const file = fs.readFileSync(publicPath);
     return new NextResponse(file, {
       status: 200,
       headers: {
