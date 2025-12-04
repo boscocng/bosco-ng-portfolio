@@ -1,23 +1,14 @@
-"use client";
+ "use client";
 
-import React, { Suspense } from "react";
+import React from "react";
 import { Caveat } from "next/font/google";
-import { useSearchParams } from "next/navigation";
 
 const headline = Caveat({
   weight: ["700"],
   subsets: ["latin"],
 });
 
-function ResumeFrame() {
-  const searchParams = useSearchParams();
-  // Cache-busting query so that new uploads via the admin page are shown immediately.
-  // Admin page opens /resume?cb=<timestamp>, which we forward to the iframe src.
-  const cb = searchParams.get("cb") ?? "";
-  const iframeSrc = cb
-    ? `/api/resume?cb=${encodeURIComponent(cb)}#toolbar=1&navpanes=1&scrollbar=1`
-    : `/api/resume#toolbar=1&navpanes=1&scrollbar=1`;
-
+export default function ResumePage() {
   return (
     <main className="min-h-screen notebook-paper">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative">
@@ -51,7 +42,7 @@ function ResumeFrame() {
           {/* PDF Viewer */}
           <div className="w-full">
             <iframe
-              src={iframeSrc}
+              src="/images/Bosco Ng Resume.pdf#toolbar=1&navpanes=1&scrollbar=1"
               className="w-full h-[600px] sm:h-[700px] lg:h-[800px] border border-gray-300 rounded-lg shadow-inner"
               title="Bosco Ng Resume"
             />
@@ -59,22 +50,6 @@ function ResumeFrame() {
         </div>
       </div>
     </main>
-  );
-}
-
-export default function ResumePage() {
-  return (
-    <Suspense
-      fallback={
-        <main className="min-h-screen notebook-paper">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative">
-            <p className="text-center text-gray-600">Loading resume…</p>
-          </div>
-        </main>
-      }
-    >
-      <ResumeFrame />
-    </Suspense>
   );
 }
 
