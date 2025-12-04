@@ -2,14 +2,22 @@
 
 import React from "react";
 import { Caveat } from "next/font/google";
+import { useSearchParams } from "next/navigation";
 
 const headline = Caveat({
 	weight: ["700"],
 	subsets: ["latin"],
 });
 
-
 export default function ResumePage() {
+	const searchParams = useSearchParams();
+	// Cache-busting query so that new uploads via the admin page are shown immediately.
+	// Admin page opens /resume?cb=<timestamp>, which we forward to the iframe src.
+	const cb = searchParams.get("cb") ?? "";
+	const iframeSrc = cb
+		? `/api/resume?cb=${encodeURIComponent(cb)}#toolbar=1&navpanes=1&scrollbar=1`
+		: `/api/resume#toolbar=1&navpanes=1&scrollbar=1`;
+
 	return (
 		<main className="min-h-screen notebook-paper">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative">
@@ -42,7 +50,7 @@ export default function ResumePage() {
 					{/* PDF Viewer */}
 					<div className="w-full">
 						<iframe
-							src="/api/resume#toolbar=1&navpanes=1&scrollbar=1"
+							src={iframeSrc}
 							className="w-full h-[600px] sm:h-[700px] lg:h-[800px] border border-gray-300 rounded-lg shadow-inner"
 							title="Bosco Ng Resume"
 						/>
